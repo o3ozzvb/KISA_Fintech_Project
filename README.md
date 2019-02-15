@@ -28,9 +28,11 @@ Database는 Google Cloud에 만들었어요
 
 DB 접속정보는 다음과 같습니다 소스에 셋팅이 되어있으니
 별도로 할 필요는 없고, 별도 DB 툴로 접근시 아래 접속 정보 참고해주세요
-(방화벽 설정이 되어있는데..kisa ip는 등록했고 집에서는 안될 수도 있으니 접속안되면 따로 알려주세요)
+(방화벽 설정이 되어있는데..kisa ip는 등록했고 외부에서는 안되니 따로 알려주세요. 아니면 아래 DB접속정보를 로컬로 바꿔보면 됩니다.)
+
 
 ```
+//app/common/connection.js
 const pool = mysql.createPool({
     connectionLimit : 10,
     host     : '34.85.6.250',
