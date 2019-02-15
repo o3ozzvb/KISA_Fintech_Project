@@ -1,10 +1,10 @@
 const apiService = require('../service/api/apiService');
 const authService = require('../service/api/authService');
 
-const realNameController = function (req, res, next) {
+const realname = function (req, res, next) {
 
-  console.log(req.user);
-  //조회할 데이터
+  // console.log(req.user);
+  // 조회할 데이터
   const data = {
     "bank_code_std": "002",
     "account_num": "1234567890123456",
@@ -29,8 +29,12 @@ const realNameController = function (req, res, next) {
       console.log("catch ", error)
     });
   });
-
-
 };
 
-module.exports = realNameController;
+//사용자 정보조회
+const user_me = function (req, res, next) {
+  //apiService.userMe(data, config).then....
+};
+
+
+module.exports = { realname, user_me };

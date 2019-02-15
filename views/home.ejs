@@ -1,12 +1,37 @@
 <%- layout('layout/layout') %>
 
-<div class="page-content">
-    Login Success
+<div class="page-content header-clear-medium">
     <a href="#" id="submitBtn" onclick="logout()"
-       class="button button-full button-m shadow-large button-round-small bg-green1-dark top-30 bottom-0">Logout</a>
+       class="button button-full button-m shadow-large button-round-small bg-green1-dark button-margins top-30 bottom-0">Logout</a>
     <script>
       function logout(){
         window.location.href = '/logout';
+      }
+    </script>
+
+    <a href="#" id="authBtn" onClick="oauth()"
+       class="default-link button button-m shadow-huge button-round-large bottom-30 button-full button-margins bg-highlight">oAuth</a>
+    <script>
+      function oauth() {
+        var qs = "?response_type=code" +
+          "&client_id=l7xx4f4caafa626e453eac615a2ee74bdd3c" +
+          "&redirect_uri=http://localhost:3000/auth/callback" +
+          "&scope=login inquiry transfer" +
+          "&auth_type=0" +
+          "&edit_option=off" +
+          "&invoke_type=ajax";   //이거..
+
+
+        $('#authBtn').click(function () {
+          $.ajax({
+            url: 'https://testapi.open-platform.or.kr/oauth/2.0/authorize2' + qs,
+            type: 'get',
+            data: {}
+          }).done(function (result) {
+            console.log(result)
+            window.location.href = result.location;
+          })
+        })
       }
     </script>
 </div>

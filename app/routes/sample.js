@@ -4,9 +4,6 @@ const router = express.Router();
 const Promise = require("bluebird");
 const getSqlConnection = require('./../common/connection');
 
-router.get('/test_oauth', function(req, res, next) {
-  res.render('oauth_test')
-});
 
 router.get('/mysql_test', function (req, res, next) {
   Promise.using(getSqlConnection(),

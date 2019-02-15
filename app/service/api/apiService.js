@@ -1,7 +1,7 @@
 const axios = require('axios');
 const apiUri = require("./apiUri");
 const { getUrl } = require("../../common/util");
-
+//access_token : b2fe94db-f401-4a47-9494-18771bf51bc0
 
 //TODO 사용자정보조회
 const userMe = (data, config) => {

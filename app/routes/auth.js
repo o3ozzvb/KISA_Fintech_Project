@@ -2,9 +2,6 @@ const express = require('express');
 const {oauthCallback, accessToken} = require('../controller/authController');
 const router = express.Router();
 
-// /* oauth 요청 처리  */
-// router.get('/oauth', oauth);
-
 /* oauth 인증후 callback 처리 */
 router.get('/callback', oauthCallback);
 
