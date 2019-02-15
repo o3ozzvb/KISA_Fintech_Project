@@ -1,1 +1,12 @@
-home
+<%- layout('layout/layout') %>
+
+<div class="page-content">
+    Login Success
+    <a href="#" id="submitBtn" onclick="logout()"
+       class="button button-full button-m shadow-large button-round-small bg-green1-dark top-30 bottom-0">Logout</a>
+    <script>
+      function logout(){
+        window.location.href = '/logout';
+      }
+    </script>
+</div>

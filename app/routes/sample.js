@@ -1,28 +1,14 @@
-var express = require('express');
-var request = require('request');
+const express = require('express');
 // var mysql      = require('mysql');
-var cheerio = require('cheerio');
-var router = express.Router();
-var pool = require('../common/connectionPool');
-var Promise = require("bluebird");
-var getSqlConnection = require('./../common/connection');
+const router = express.Router();
+const Promise = require("bluebird");
+const getSqlConnection = require('./../common/connection');
 
-router.get('/naver', function (req, res, next) {
-
-  request('http://www.naver.com/', function (err, resp, html) {
-    if (!err) {
-      const $ = cheerio.load(html);
-      console.log(html);
-      res.send(html);
-    } else {
-      res.send({error: "error"})
-    }
-  });
+router.get('/test_oauth', function(req, res, next) {
+  res.render('oauth_test')
 });
 
-
 router.get('/mysql_test', function (req, res, next) {
-
   Promise.using(getSqlConnection(),
     (connection) => {
       return connection.query('SELECT * FROM user')
@@ -31,7 +17,6 @@ router.get('/mysql_test', function (req, res, next) {
           console.log(error);
         });
     });
-
 
   // Promise.using(getSqlConnection(),
   //    (connection) => {
@@ -43,7 +28,6 @@ router.get('/mysql_test', function (req, res, next) {
   //   }).then((rows) => {
   //     res.send(rows);
   // });
-
 });
 
 
@@ -62,13 +46,21 @@ router.get('/insert', function (req, res, next) {
     user_accessToken: '1111'
   };
 
-  connection.query('INSERT INTO kisadb.user SET ?', data, function (error, results, fields) {
-    if (error) throw error;
-    console.log('The solution is: ', results);
-    // res.send(`result ${results[0].name}`);
-  });
+  Promise.using(getSqlConnection(),
+    (connection) => {
+      return connection.query('INSERT INTO user SET ?', data)
+        .then(rows => res.send('The solution is: ', rows))
+        .catch(function (error) {
+          console.log(error);
+        });
+    });
 
-  connection.end();
+  // connection.query('INSERT INTO kisadb.user SET ?', data,
+  //    function (error, results, fields) {
+  //      if (error) throw error;
+  //      console.log('The solution is: ', results);
+  // });
+  // connection.end();
 
 });
 

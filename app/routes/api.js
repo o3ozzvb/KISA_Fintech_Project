@@ -6,4 +6,6 @@ const isAuthenticated = require('../common/isAuthenticated');
 
 /* GET users listing. */
 router.get('/realname', isAuthenticated, realNameController);
+
+
 module.exports = router;

@@ -12,16 +12,17 @@ const flash = require('connect-flash');
 
 const indexRouter = require('./app/routes/index');
 const apiRouter = require('./app/routes/api');
-const oAuthRouter = require('./app/routes/oauth');
+const oAuthRouter = require('./app/routes/auth');
 const sampleRouter = require('./app/routes/sample');
 
 const app = express();
 
+// ejs에서 layout 기반으로 작업하기 위해 추가
+app.engine('ejs', require('ejs-locals'));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 // app.set('view engine', 'pug');
 app.set('view engine', 'ejs');
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -64,3 +65,6 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+
+//
