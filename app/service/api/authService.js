@@ -11,7 +11,6 @@ const { getUrl, formUrlEncoded } = require("../../common/util");
 // 2 ledge
 const accessToken = () => {
 
-  console.log("2");
   const data = {
     client_id : config.clientId,
     client_secret: config.clientSecret,
@@ -26,7 +25,5 @@ const accessToken = () => {
     config: {headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}}
   });
 };
-
-
 
 module.exports = {accessToken};

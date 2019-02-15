@@ -1,5 +1,31 @@
 # fintech
 
+### 소스내려받고 할일
+```
+npm install  // node module 설치
+npm start  // 서버 start
+```
+DB 접속은 kisa 외부에선 안되니 로컬 DB로 변경하고 아래 쿼리 실행 
+
+http://localhost:3000 번으로 접속하고, 로그인 버튼 누르고 id/pw  는 아래 insert 문 참고해서 로그인 되는지 확인해보면 됩니다.
+
+```
+create table user
+(
+	id int auto_increment
+		primary key,
+	name varchar(50) null,
+	user_id varchar(50) null,
+	user_password varchar(50) null,
+	user_address varchar(50) null,
+	user_accessToken varchar(50) null
+);
+
+
+insert into fintechdb.user (id, name, user_id, user_password, user_address, user_accessToken) values (4, 'dongs', 'dongs', 1111, 'seoul', 'aaaaa');
+
+```
+
 
 ### 환경설정
 아래와 같이 API 키 설정이 되어있습니다.
