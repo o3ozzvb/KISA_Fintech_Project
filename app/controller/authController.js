@@ -3,17 +3,6 @@ const config = require("../common/config");
 const { getUrl, formUrlEncoded } = require("../common/util");
 const apiUri = require("../service/api/apiUri");
 const axios = require('axios');
-// const oauth = (req, res, next) => {
-//     // Authorization oauth2 URI
-//     const authorizationUri = oauth2.authorizationCode.authorizeURL({
-//       redirect_uri: 'http://localhost:3000/auth/callback',
-//       scope: 'login transfer inquiry', // also can be an array of multiple scopes, ex. ['<scope1>, '<scope2>', '...']
-//       auth_type: 0,
-//       response_type: "code",
-//       client_info: 'test whatever you want'
-//     });
-//     res.redirect(authorizationUri);
-// }
 
 const oauthCallback = async ( req, res, next ) => {
 
@@ -38,33 +27,7 @@ const oauthCallback = async ( req, res, next ) => {
     console.log(error);
     res.send("error " + error)
   });
-
-  // axios.post(getUrl(apiUri.token), data, option)
-  //   .then((response) => {
-  //     console.log(response);
-  //     res.send(response);
-  //   })
-
-
-//     console.log("test");
-//     const code = req.query.code;
-//     // Get the access token object (the authorization code is given from the previous step).
-//     const tokenConfig = {
-//       code: code,
-//       redirect_uri: 'http://localhost:3000/auth/callback',
-//       scope: 'login transfer inquiry', // also can be an array of multiple scopes, ex. ['<scope1>, '<scope2>', '...']
-//     };
-//
-// // Save the access token
-//     try {
-//       const result = await oauth2.authorizationCode.getToken(tokenConfig);
-//       const accessToken = oauth2.accessToken.create(result);
-//       console.log("ACCESS_TOKEN", accessToken);
-//       res.send(accessToken);
-//     } catch (error) {
-//       console.log('Access Token Error', error.message);
-//     }
-}
+};
 
 const accessToken = (req, res, next) => {
     authService.accessToken().then(
