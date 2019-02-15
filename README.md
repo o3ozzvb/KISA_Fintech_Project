@@ -5,8 +5,11 @@
 아래와 같이 API 키 설정이 되어있습니다.
 시스템 환경변수에 아래 두 변수를 설정합니다.
 (본인걸 넣으면 되겠네요.. 필요하면 한사람 정해서 공유하면 좋을 거 같구요)
+
+```
 KISA_CLIENT_ID 
 KISA_CLIENT_SECRET
+```
 
 환경변수 설정방법은 여기를 참고하세요
 
@@ -51,8 +54,9 @@ views           // 화면 템플릿
 ```
 
 ### 사용 라이브러리
-
 axios : http 요청처리
+
 passport: 인증처리 (id/pw 인증만 설정 )
+
 promise-mysql : 기본 mysql 은 callback 위주라 소스가 복잡해져서서 promise로 wrapping한 라이브러리로 변경
 
