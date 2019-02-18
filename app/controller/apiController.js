@@ -45,7 +45,9 @@ const account_list = function (req, res, next) {
       const config = {headers: {'Authorization': `Bearer ${user.accessToken}`}};
       const data = { user_seq_no: user.user_seq_no, include_cancel_yn: "Y", sort_order:"D"};
       apiService.accountList(data, config)
-        .then((data) => res.send(data))
+        .then((data) => {
+          return res.send(data)
+        }).catch( error => console.log(error))
     })
 }
 

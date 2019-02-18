@@ -15,7 +15,7 @@ const unlink = (data, config) => {
 
 //TODO 등록계좌조회
 const accountList = (data, config) => {
-  return axios.post(getUrl(apiUri.account_list), data, config)
+  return axios.get(getUrl(apiUri.account_list), data, config)
 };
 
 //TODO 계좌정보변경
