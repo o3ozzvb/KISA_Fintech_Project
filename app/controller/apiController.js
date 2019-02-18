@@ -48,6 +48,7 @@ const account_list = function (req, res, next) {
       const config = {headers: {'Authorization': `Bearer ${user.user_accessToken}`}};
       console.log(config);
       const params = { user_seq_no: user.user_seq_no, include_cancel_yn: "Y", sort_order:"D"};
+      // const params = { user_seq_no: '1100034701, include_cancel_yn: "Y", sort_order:"D"};
 
       axios({
         method:'get',
@@ -55,13 +56,13 @@ const account_list = function (req, res, next) {
         data: params,
         headers: {'Authorization': `Bearer ${user.user_accessToken}`}
       }).then(data => {
-        console.log(data);
-        return res.send(data)
+       // console.log(data);
+        return res.send(data.data)
       }).catch( error => res.send(error) )
 
-      // apiService.accountList(data, config)
+      // apiService.accountList(params, config)
       //   .then((data) => {
-      //     console.log(data.data);
+      //     console.log(data);
       //     return res.send(data)
       //   })
       //   .catch( error => res.send(error))

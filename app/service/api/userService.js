@@ -3,6 +3,10 @@ const getSqlConnection = require('../../common/connection');
 
 const updateAccessToken = (user_id, token_info) => {
 
+  if ( user_id == null || token_info == null || token_info.user_accessToken == null || token_info.user_seq_no == null) {
+    return "error";
+  }
+
   return Promise.using(getSqlConnection(),
      function (connection) {
       return connection.query(
