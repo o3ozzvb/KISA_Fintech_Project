@@ -3,7 +3,13 @@ const express = require('express');
 const router = express.Router();
 const Promise = require("bluebird");
 const getSqlConnection = require('./../common/connection');
+const { updateAccessToken } = require( '../service/api/userService');
 
+router.get('/query', function(req, res, next) {
+  updateAccessToken("dongs", "testToken").then(
+    data => res.send(data)
+  )
+});
 
 router.get('/mysql_test', function (req, res, next) {
   Promise.using(getSqlConnection(),
