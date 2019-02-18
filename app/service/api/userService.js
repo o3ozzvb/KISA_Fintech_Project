@@ -1,11 +1,14 @@
 const Promise = require("bluebird");
 const getSqlConnection = require('../../common/connection');
 
-
 const updateAccessToken = (user_id, token_info) => {
+
   return Promise.using(getSqlConnection(),
-    (connection) => {
-      return connection.query('UPDATE user SET user_accessToken = ?, user_seq_no = ?  WHERE user_id = ?', [token_info.user_accessToken, token_info.user_sec_no,  user_id])
+     function (connection) {
+      return connection.query(
+        "UPDATE user SET user_accessToken= ?, user_seq_no= ? WHERE user_id= ?",
+        [token_info.user_accessToken, token_info.user_seq_no, user_id ]
+      ).catch( error => console.log(error))
     });
 };
 

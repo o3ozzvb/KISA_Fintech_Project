@@ -1,6 +1,9 @@
 const apiService = require('../service/api/apiService');
 const authService = require('../service/api/authService');
 const userService = require('../service/api/userService');
+const axios = require('axios');
+const apiUri = require("../service/api//apiUri");
+const { getUrl } = require("../common/util");
 
 const realname = function (req, res, next) {
 
@@ -42,12 +45,26 @@ const account_list = function (req, res, next) {
 
   userService.getUserByUserId(user_id)
     .then(user => {
-      const config = {headers: {'Authorization': `Bearer ${user.accessToken}`}};
-      const data = { user_seq_no: user.user_seq_no, include_cancel_yn: "Y", sort_order:"D"};
-      apiService.accountList(data, config)
-        .then((data) => {
-          return res.send(data)
-        }).catch( error => console.log(error))
+      const config = {headers: {'Authorization': `Bearer ${user.user_accessToken}`}};
+      console.log(config);
+      const params = { user_seq_no: user.user_seq_no, include_cancel_yn: "Y", sort_order:"D"};
+
+      axios({
+        method:'get',
+        url: getUrl(apiUri.account_list),
+        data: params,
+        headers: {'Authorization': `Bearer ${user.user_accessToken}`}
+      }).then(data => {
+        console.log(data);
+        return res.send(data)
+      }).catch( error => res.send(error) )
+
+      // apiService.accountList(data, config)
+      //   .then((data) => {
+      //     console.log(data.data);
+      //     return res.send(data)
+      //   })
+      //   .catch( error => res.send(error))
     })
 }
 

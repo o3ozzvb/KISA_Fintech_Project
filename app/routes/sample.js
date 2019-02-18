@@ -6,8 +6,10 @@ const getSqlConnection = require('./../common/connection');
 const { updateAccessToken } = require( '../service/api/userService');
 
 router.get('/query', function(req, res, next) {
-  updateAccessToken("dongs", "testToken").then(
-    data => res.send(data)
+
+  updateAccessToken("dongs", {user_accessToken: "tokne", user_seq_no: "1111"}
+    // .then(
+    // data => res.send(data)
   )
 });
 

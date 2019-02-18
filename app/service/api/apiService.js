@@ -16,6 +16,20 @@ const unlink = (data, config) => {
 //TODO 등록계좌조회
 const accountList = (data, config) => {
   return axios.get(getUrl(apiUri.account_list), data, config)
+
+  // return axios({
+  //   method: 'get',
+  //   url: getUrl(apiUri.account_list),
+  //   // data: formUrlEncoded(data),
+  //   data,
+  //   // config
+  //   config: {headers:
+  //       {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+  //        'Authorization': 'Bearer 3c24260f-c65b-4a5e-833c-ef6b0c6f81be'
+  //     }}
+  // });
+
+
 };
 
 //TODO 계좌정보변경
