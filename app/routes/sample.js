@@ -11,6 +11,11 @@ router.get('/query', function(req, res, next) {
   )
 });
 
+router.get("/abc", (req, res, next) => {
+  res.render("abc")
+});
+
+
 router.get('/mysql_test', function (req, res, next) {
   Promise.using(getSqlConnection(),
     (connection) => {

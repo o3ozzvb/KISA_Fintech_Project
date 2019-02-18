@@ -1,10 +1,9 @@
 const apiService = require('../service/api/apiService');
 const authService = require('../service/api/authService');
+const userService = require('../service/api/userService');
 
 const realname = function (req, res, next) {
 
-  // console.log(req.user);
-  // 조회할 데이터
   const data = {
     "bank_code_std": "002",
     "account_num": "1234567890123456",
@@ -13,7 +12,7 @@ const realname = function (req, res, next) {
     "tran_dtime": "20190212175158"
   };
 
-  authService.accessToken().then( (response) => {
+  authService.accessToken().then((response) => {
     //액세스 토큰발급
     const accessToken = response.data.access_token;
     const config = {headers: {'Authorization': `Bearer ${accessToken}`}};
@@ -36,5 +35,19 @@ const user_me = function (req, res, next) {
   //apiService.userMe(data, config).then....
 };
 
+//등록계좌조회
+const account_list = function (req, res, next) {
 
-module.exports = { realname, user_me };
+  const user_id = req.user.user_id;
+
+  userService.getUserByUserId(user_id)
+    .then(user => {
+      const config = {headers: {'Authorization': `Bearer ${user.accessToken}`}};
+      const data = { user_seq_no: user.user_seq_no, include_cancel_yn: "Y", sort_order:"D"};
+      apiService.accountList(data, config)
+        .then((data) => res.send(data))
+    })
+}
+
+
+module.exports = {realname, user_me, account_list};

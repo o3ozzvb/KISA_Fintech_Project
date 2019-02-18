@@ -8,12 +8,14 @@ const oauthCallback = (req, res, next) => {
 
   getOAuthToken(code).then(response => {
     console.log(response.data);
-    const accessToken = response.data.access_token;
-    return accessToken;
-  }).then( (accessToken) => {
-    console.log(accessToken);
-    console.log(user_id, accessToken);
-    updateAccessToken(user_id, accessToken).then((data) => {
+    // const accessToken = response.data.access_token;
+    // return accessToken;
+    return response.data;
+  }).then( (data) => {
+    console.log(data);
+    console.log(user_id, data);
+    const token_info = { accessToken: data.accessToken, user_seq_no: data.user_seq_no }
+    updateAccessToken(user_id, token_info).then((data) => {
       res.send(data);
     }).catch( error => res.send(error));
   })
