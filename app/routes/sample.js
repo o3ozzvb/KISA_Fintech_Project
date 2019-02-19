@@ -40,21 +40,34 @@ router.get('/mysql_test', function (req, res, next) {
   // });
 });
 
-
 router.get('/user', (req, res) => {
   res.render('index');
 });
 
+<<<<<<< HEAD
 //-----------은경
+=======
+router.get('/newlogin', (req, res) =>{
+  res.render('newlogin');
+})
+
+>>>>>>> cb27224f98d60022632fb4adb3416fb508efbbf7
 router.get('/main', (req,res) =>{
   res.render('main');
 })
 
+<<<<<<< HEAD
+=======
+router.get('/main2', (req,res) =>{
+  res.render('main2');
+})
+>>>>>>> cb27224f98d60022632fb4adb3416fb508efbbf7
 
 router.get('/main2', (req,res) =>{
   res.render('main2');
 })
 
+<<<<<<< HEAD
 router.get('/test', (req,res) =>{
   res.render('test');
 })
@@ -75,6 +88,25 @@ router.get('/report', (req,res) =>{
 })
 
 
+=======
+router.get('/setTarget', (req,res) =>{
+  res.render('set_target_page2');
+})
+
+router.get('/newcheckbox', (req, res) =>{
+  res.render('newcheckbox');
+})
+
+router.get('/newfinal', (req,res) =>{
+  res.render('newfinal');
+})
+
+router.get('/testmain', (req,res) =>{
+  res.render('main');
+})
+
+router.get('/')
+>>>>>>> cb27224f98d60022632fb4adb3416fb508efbbf7
 
 router.get('/insert', function (req, res, next) {
 
