@@ -61,7 +61,7 @@ router.get('/main2', (req,res) =>{
 })
 
 router.get('/setTarget', (req,res) =>{
-  res.render('set_target_page');
+  res.render('set_target_page2');
 })
 
 router.get('/newcheckbox', (req, res) =>{
