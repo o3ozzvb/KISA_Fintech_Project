@@ -40,13 +40,12 @@ router.get('/mysql_test', function (req, res, next) {
   // });
 });
 
-
 router.get('/user', (req, res) => {
   res.render('index');
 });
 
-router.get('/test', (req,res) =>{
-  res.render('test');
+router.get('/newlogin', (req, res) =>{
+  res.render('newlogin');
 })
 
 router.get('/main', (req,res) =>{
@@ -64,6 +63,12 @@ router.get('/main2', (req,res) =>{
 router.get('/setTarget', (req,res) =>{
   res.render('set_target_page');
 })
+
+router.get('/newcheckbox', (req, res) =>{
+  res.render('newcheckbox');
+})
+
+router.get('/')
 
 router.get('/insert', function (req, res, next) {
 
