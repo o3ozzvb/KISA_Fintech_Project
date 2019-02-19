@@ -211,7 +211,10 @@ const insertPig = function(req,res,next){
   console.log(data);
 
   pigService.insertPig(data)
-  .then(result => res.render('main2'))
+  .then(result => {
+    console.log(result);
+    res.render('main2')
+  })
   .catch( error => console.log(error));
 
   // console.log("insertPig")
