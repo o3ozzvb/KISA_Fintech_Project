@@ -44,35 +44,25 @@ router.get('/user', (req, res) => {
   res.render('index');
 });
 
-<<<<<<< HEAD
-//-----------은경
-=======
 router.get('/newlogin', (req, res) =>{
   res.render('newlogin');
 })
 
->>>>>>> cb27224f98d60022632fb4adb3416fb508efbbf7
 router.get('/main', (req,res) =>{
   res.render('main');
 })
 
-<<<<<<< HEAD
-=======
 router.get('/main2', (req,res) =>{
   res.render('main2');
 })
->>>>>>> cb27224f98d60022632fb4adb3416fb508efbbf7
 
 router.get('/main2', (req,res) =>{
   res.render('main2');
 })
 
-<<<<<<< HEAD
 router.get('/test', (req,res) =>{
   res.render('test');
 })
-
-//----------수경
 
 router.get('/threeButton', (req,res) =>{
   res.render('threeButton');
@@ -82,13 +72,14 @@ router.get('/threeButton1', (req,res) =>{
   res.render('threeButton1');
 })
 
+router.get('/reportUser', (req,res) =>{
+  res.render('reportUser');
+})
 
 router.get('/report', (req,res) =>{
   res.render('report');
 })
 
-
-=======
 router.get('/setTarget', (req,res) =>{
   res.render('set_target_page2');
 })
@@ -106,7 +97,6 @@ router.get('/testmain', (req,res) =>{
 })
 
 router.get('/')
->>>>>>> cb27224f98d60022632fb4adb3416fb508efbbf7
 
 router.get('/insert', function (req, res, next) {
 
