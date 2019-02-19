@@ -150,6 +150,37 @@ const transfer_withdraw = (req, res, next) => {
     })
 };
 
+//거래내역조회
+const account_transaction_list=(req,res,next)=>{
+  const user_id=req.user.user_id;
+
+  userService.getUserByUserId(user_id)
+    .then(user => {
+      const reqConfig={
+        params:{
+          fintech_use_num:"199003877057724702970497",
+          inquiry_type:"A",
+          from_date:"20190218",
+          to_date:"20190219",
+          sort_order:"D",
+          page_index:"1",
+          tran_dtime:"20190219174500",
+          befor_inquiry_trace_info:"123",
+          list_tran_seqno:"0"
+        },
+        headers:{
+          'Authorization':`Bearer ${user.user_accessToken}`
+        }
+      };
+      apiService.accountTransactionList(reqConfig)
+      .then((data)=>{
+        console.log(data.data);
+        return res.send(data.data)
+      })
+      .catch(error=> res.send(error))
+    })
+};
+
 
 //돼지 보유 여부 확인
 const mainPage = function (req, res, next) {
@@ -188,6 +219,5 @@ const insertPig = function(req,res,next){
 
 
 }
-module.exports = {realname, user_me, account_list, account_balance,
-   transfer_deposit2, transfer_withdraw ,mainPage,insertPig};
-
+module.exports = {realname, user_me, account_list, account_balance, transfer_deposit2, transfer_withdraw
+  ,account_transaction_list,mainPage,insertPig};
