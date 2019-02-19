@@ -206,16 +206,17 @@ const insertPig = function(req,res,next){
     budgetAmt: req.body.budgetAmt,
     user_id: user_id,
     //goalAmt: 'goalAmt',
-    withdrawAcct: '12345' //'withdrawAcct',
+    withdraw_acct: '12345' //'withdrawAcct',
   };
+  console.log(data);
 
   pigService.insertPig(data)
   .then(result => res.render('main2'))
   .catch( error => res.send(error));
 
-  console.log("insertPig")
-  console.log(req.body.goal);
-  res.send("success");
+  // console.log("insertPig")
+  // console.log(req.body.goal);
+  // res.send("success");
 
 
 }

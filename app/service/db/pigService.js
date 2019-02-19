@@ -13,7 +13,7 @@ const getPigByUser = (user_id) => {
 }
 
 const insertPig = (data) => {
-
+console.log("testtt");
     res.send("test");
 
     // Promise.using(getSqlConnection(),
