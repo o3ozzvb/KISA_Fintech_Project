@@ -45,9 +45,15 @@ router.get('/user', (req, res) => {
   res.render('index');
 });
 
-router.get('/test', (req,res) =>{
-  res.render('test');
+router.get('/newlogin', (req, res) =>{
+  res.render('newlogin');
 })
+
+router.get('/newcheckbox', (req, res) =>{
+  res.render('newcheckbox');
+})
+
+router.get('/')
 router.get('/insert', function (req, res, next) {
 
   const data = {
