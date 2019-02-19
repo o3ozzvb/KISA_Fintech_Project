@@ -76,6 +76,10 @@ router.get('/testmain', (req,res) =>{
   res.render('main');
 })
 
+router.get('/newlist', (req, res) =>{
+  res.render('newlist');
+})
+
 router.get('/')
 
 router.get('/insert', function (req, res, next) {
