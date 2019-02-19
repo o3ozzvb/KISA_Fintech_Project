@@ -1,0 +1,18 @@
+GET https://testapi.open-platform.or.kr/v1.0/account/list?user_seq_no=1100034701&include_cancel_yn=Y&sort_order=D
+Accept: */*
+Cache-Control: no-cache
+Authorization: Bearer 3c24260f-c65b-4a5e-833c-ef6b0c6f81be
+
+<> 2019-02-18T052639.200.json
+
+###
+
+GET https://testapi.open-platform.or.kr/v1.0/account/list?user_seq_no=1100034701&include_cancel_yn=Y&sort_order=D
+Accept: */*
+Cache-Control: no-cache
+Authorization: Bearer 3c24260f-c65b-4a5e-833c-ef6b0c6f81be
+
+<> 2019-02-18T052526.200.json
+
+###
+
