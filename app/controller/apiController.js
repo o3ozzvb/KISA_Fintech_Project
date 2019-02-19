@@ -60,38 +60,65 @@ const account_list = function (req, res, next) {
         .catch(error => res.send(error))
     })
 }
-
-
-//잔액조
-const balance = function (req, res, next) {
+//잔액조회
+const account_balance = function (req, res, next) {
 
   const user_id = req.user.user_id;
 
   userService.getUserByUserId(user_id)
     .then(user => {
-      const config = {headers: {'Authorization': `Bearer ${user.user_accessToken}`}};
-      console.log(config);
-      const params = {fintech_use_num: user.user_seq_no, tran_dtime: "Y"};
-      // const params = { user_seq_no: '1100034701, include_cancel_yn: "Y", sort_order:"D"};
+      const reqConfig = {
+        params: {fintech_use_num:"199003877057724702970497",tran_dtime:"20190219132900"},
+        headers: { // 요청 헤더
+          'Authorization': `Bearer ${user.user_accessToken}`
+        }
+      }
 
-      axios({
-        method: 'get',
-        url: getUrl(apiUri.account_balance),
-        data: params,
-        headers: {'Authorization': `Bearer ${user.user_accessToken}`}
-      }).then(data => {
-        // console.log(data);
-        return res.send(data.data)
-      }).catch(error => res.send(error))
-
-      // apiService.accountList(params, config)
-      //   .then((data) => {
-      //     console.log(data);
-      //     return res.send(data)
-      //   })
-      //   .catch( error => res.send(error))
+      apiService.accountBalance(reqConfig)
+        .then((data) => {
+          console.log(data.data);
+          return res.send(data.data)
+        })
+        .catch(error => res.send(error))
     })
 }
+//입금이체2 계좌번호사용
+const transfer_deposit2= function(req,res,next){
 
+  const user_id=req.user.user_id;
+  userService.getUserByUserId(user_id)
+    .then(user => {
+      const reqConfig={
+        params:{
+                wd_pass_phrase:"NONE",
+                wd_print_content:"환불해드림..",
+               // "name_check_option":"off",
+                req_cnt:"1",
+                req_list:[
+                  {
+                    tran_no:"1",
+                    bank_code_std:"002",
+                    account_num:"9876543210987654",
+                    account_holder_name:"홍길동",
+                    print_content:"테스트베드",
+                    tran_amt:"10000"
+                  }
+                ],
+                tran_dtime:"20190219140620"
+              },
+              headers: { // 요청 헤더
+                'Authorization': `Bearer ${user.user_accessToken}`
+              }
+            }
+      
+            apiService.transferDeposit2(reqConfig)
+              .then((data) => {
+                console.log(data.data);
+                return res.send(data.data)
+              })
+              .catch(error => res.send(error))
+          })
+      }
+      
 
-module.exports = {realname, user_me, account_list};
+module.exports = {realname, user_me, account_list,account_balance,transfer_deposit2};
