@@ -70,4 +70,36 @@ const account_list = function (req, res, next) {
 }
 
 
+//잔액조
+const balance = function (req, res, next) {
+
+  const user_id = req.user.user_id;
+
+  userService.getUserByUserId(user_id)
+    .then(user => {
+      const config = {headers: {'Authorization': `Bearer ${user.user_accessToken}`}};
+      console.log(config);
+      const params = { fintech_use_num: user.user_seq_no, tran_dtime: "Y"};
+      // const params = { user_seq_no: '1100034701, include_cancel_yn: "Y", sort_order:"D"};
+
+      axios({
+        method:'get',
+        url: getUrl(apiUri.account_balance),
+        data: params,
+        headers: {'Authorization': `Bearer ${user.user_accessToken}`}
+      }).then(data => {
+        // console.log(data);
+        return res.send(data.data)
+      }).catch( error => res.send(error) )
+
+      // apiService.accountList(params, config)
+      //   .then((data) => {
+      //     console.log(data);
+      //     return res.send(data)
+      //   })
+      //   .catch( error => res.send(error))
+    })
+}
+
+
 module.exports = {realname, user_me, account_list};
