@@ -1,7 +1,6 @@
 const axios = require('axios');
 const apiUri = require("./apiUri");
 const { getUrl } = require("../../common/util");
-//access_token : b2fe94db-f401-4a47-9494-18771bf51bc0
 
 //TODO 사용자정보조회
 const userMe = (data, config) => {
@@ -15,21 +14,7 @@ const unlink = (data, config) => {
 
 //TODO 등록계좌조회
 const accountList = (data, config) => {
-  return axios.get(getUrl(apiUri.account_list), data, config)
-
-  // return axios({
-  //   method: 'get',
-  //   url: getUrl(apiUri.account_list),
-  //   // data: formUrlEncoded(data),
-  //   data,
-  //   // config
-  //   config: {headers:
-  //       {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-  //        'Authorization': 'Bearer 3c24260f-c65b-4a5e-833c-ef6b0c6f81be'
-  //     }}
-  // });
-
-
+  return axios.get(getUrl(apiUri.account_list), data)
 };
 
 //TODO 계좌정보변경

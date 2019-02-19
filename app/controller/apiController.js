@@ -3,7 +3,7 @@ const authService = require('../service/api/authService');
 const userService = require('../service/api/userService');
 const axios = require('axios');
 const apiUri = require("../service/api//apiUri");
-const { getUrl } = require("../common/util");
+const {getUrl} = require("../common/util");
 
 const realname = function (req, res, next) {
 
@@ -45,27 +45,19 @@ const account_list = function (req, res, next) {
 
   userService.getUserByUserId(user_id)
     .then(user => {
-      const config = {headers: {'Authorization': `Bearer ${user.user_accessToken}`}};
-      console.log(config);
-      const params = { user_seq_no: user.user_seq_no, include_cancel_yn: "Y", sort_order:"D"};
-      // const params = { user_seq_no: '1100034701, include_cancel_yn: "Y", sort_order:"D"};
+      const reqConfig = {
+        params: {user_seq_no: user.user_seq_no, include_cancel_yn: "Y", sort_order: "D"},
+        headers: { // 요청 헤더
+          'Authorization': `Bearer ${user.user_accessToken}`
+        }
+      }
 
-      axios({
-        method:'get',
-        url: getUrl(apiUri.account_list),
-        data: params,
-        headers: {'Authorization': `Bearer ${user.user_accessToken}`}
-      }).then(data => {
-       // console.log(data);
-        return res.send(data.data)
-      }).catch( error => res.send(error) )
-
-      // apiService.accountList(params, config)
-      //   .then((data) => {
-      //     console.log(data);
-      //     return res.send(data)
-      //   })
-      //   .catch( error => res.send(error))
+      apiService.accountList(reqConfig)
+        .then((data) => {
+          console.log(data.data);
+          return res.send(data.data)
+        })
+        .catch(error => res.send(error))
     })
 }
 
@@ -79,18 +71,18 @@ const balance = function (req, res, next) {
     .then(user => {
       const config = {headers: {'Authorization': `Bearer ${user.user_accessToken}`}};
       console.log(config);
-      const params = { fintech_use_num: user.user_seq_no, tran_dtime: "Y"};
+      const params = {fintech_use_num: user.user_seq_no, tran_dtime: "Y"};
       // const params = { user_seq_no: '1100034701, include_cancel_yn: "Y", sort_order:"D"};
 
       axios({
-        method:'get',
+        method: 'get',
         url: getUrl(apiUri.account_balance),
         data: params,
         headers: {'Authorization': `Bearer ${user.user_accessToken}`}
       }).then(data => {
         // console.log(data);
         return res.send(data.data)
-      }).catch( error => res.send(error) )
+      }).catch(error => res.send(error))
 
       // apiService.accountList(params, config)
       //   .then((data) => {
