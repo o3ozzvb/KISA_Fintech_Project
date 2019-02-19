@@ -1,5 +1,5 @@
 const express = require('express');
-const { realname, user_me, account_list,account_balance,transfer_deposit2, transfer_withdraw } = require('../controller/apiController');
+const { realname, user_me, account_list,account_balance,transfer_deposit2, transfer_withdraw,account_transaction_list } = require('../controller/apiController');
 const router = express.Router();
 const isAuthenticated = require('../common/isAuthenticated');
 
@@ -20,5 +20,8 @@ router.get('/transfer_deposit2',isAuthenticated,transfer_deposit2);
 
 //출금이체
 router.get('/transfer_withdraw', isAuthenticated, transfer_withdraw);
+
+//거래내역조회
+router.get('/account_transaction_list',isAuthenticated,account_transaction_list)
 
 module.exports = router;
