@@ -1,0 +1,48 @@
+<%- layout('layout/layout') %>
+<body class="theme-light" data-background="none" data-highlight="blue2">
+        
+        <div class="page-content">
+                <div data-height="cover-header" class="caption bottom-0">
+                    <form class="caption-center" action="/login" method="post" id="loginForm" name="loginForm">
+                        <div class="content-boxed left-40 right-40">
+                            <div class="content top-20 bottom-40">
+                                    <img src="/images/20.png" alt="img" width="170" class="horizontal-center round-image shadow-large bottom-30">
+                                <!-- <h1 class="center-text uppercase ultrabold fa-3x"><Main>Make Your Pig Get Weight</Main></h1> -->
+                                <!-- <p class="center-text font-11 under-heading bottom-30 color-highlight">
+                                    Make Your Pig Get Weight
+                                </p> -->
+                                <h2 class="center-text color-highlight">Make Your Pig Get Weight</h2>
+                                <div class="input-style has-icon input-style-1 input-required">
+                                    <i class="input-icon fa fa-user font-11"></i>
+                                    <span>Username</span>
+                                    <em>(required)</em>
+                                    <input type="text" name="username" placeholder="Username">
+                                </div>
+                                <div class="input-style has-icon input-style-1 input-required">
+                                    <i class="input-icon fa fa-lock font-11"></i>
+                                    <span>Password</span>
+                                    <em>(required)</em>
+                                    
+                                    <input type="password" name="password" placeholder="Password">
+                                </div>
+                                <div class="clear"></div>
+                                <a href="#" id="submitBtn" onclick="onSubmit()"
+                                   class="button button-full button-m shadow-large button-round-small bg-green1-dark top-30 bottom-0">LOGIN</a>
+            
+                                <a href="/signup" style="margin-top: 10px"
+                                   class="default-link button button-m shadow-huge button-round-large bottom-30 button-full bg-highlight">Signup</a>
+                                <script>
+                                  function onSubmit(){
+                                    document.getElementById('loginForm').submit()
+                                  }
+                                </script>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+<script type="text/javascript" src="scripts/jquery.js"></script>
+<script type="text/javascript" src="scripts/plugins.js"></script>
+<script type="text/javascript" src="scripts/custom.js"></script>
+</body>
