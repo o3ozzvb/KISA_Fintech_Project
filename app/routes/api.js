@@ -1,5 +1,5 @@
 const express = require('express');
-const { realname, user_me, account_list,account_balance,transfer_deposit2 } = require('../controller/apiController');
+const { realname, user_me, account_list,account_balance,transfer_deposit2,mainPage } = require('../controller/apiController');
 const router = express.Router();
 const isAuthenticated = require('../common/isAuthenticated');
 
@@ -17,5 +17,8 @@ router.get('/account_balance',isAuthenticated,account_balance);
 
 //입금이체
 router.get('/transfer_deposit2',isAuthenticated,transfer_deposit2);
+
+//로그인 완료 후 첫 페이지
+router.get('/main', mainPage);
 
 module.exports = router;

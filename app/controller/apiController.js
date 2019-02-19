@@ -119,6 +119,19 @@ const transfer_deposit2= function(req,res,next){
               .catch(error => res.send(error))
           })
       }
-      
 
-module.exports = {realname, user_me, account_list,account_balance,transfer_deposit2};
+//돼지 보유 여부 확인
+const mainPage = function (req, res, next) {
+
+  const user_id = req.user.user_id;
+
+  pigService.getPigByUser(user_id)
+    .then(rows => {
+      if (rows.length == 0)
+        return res.render("main");
+      else
+        return res.render("main2");
+    })
+}
+
+module.exports = {realname, user_me, account_list,account_balance,transfer_deposit2,mainPage};

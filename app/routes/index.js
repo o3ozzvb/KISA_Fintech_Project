@@ -38,18 +38,13 @@ router.get('/login', function (req, res) {
 //로그인요청 처리
 router.post('/login',
   passport.authenticate('local', {failureRedirect: '/login', failureFlash: true}), // 인증 실패 시 401 리턴, {} -> 인증 스트레티지
-  (req, res) => res.redirect('/home')
+  (req, res) => res.redirect('/api/main')
 );
 
 //로그아웃
 router.get('/logout', function (req, res) {
   req.logout();
   res.redirect('/');
-});
-
-//로그인 완료후 첫페이지
-router.get('/home', function (req, res) {
-  res.render("home");
 });
 
 //사용자 정보조회 예제
