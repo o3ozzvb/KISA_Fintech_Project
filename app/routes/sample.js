@@ -48,6 +48,23 @@ router.get('/user', (req, res) => {
 router.get('/test', (req,res) =>{
   res.render('test');
 })
+
+router.get('/main', (req,res) =>{
+  res.render('main');
+})
+
+router.get('/main2', (req,res) =>{
+  res.render('main2');
+})
+
+router.get('/main2', (req,res) =>{
+  res.render('main2');
+})
+
+router.get('/setTarget', (req,res) =>{
+  res.render('set_target_page');
+})
+
 router.get('/insert', function (req, res, next) {
 
   const data = {
