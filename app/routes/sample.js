@@ -45,9 +45,37 @@ router.get('/user', (req, res) => {
   res.render('index');
 });
 
+//-----------은경
+router.get('/main', (req,res) =>{
+  res.render('main');
+})
+
+
+router.get('/main2', (req,res) =>{
+  res.render('main2');
+})
+
 router.get('/test', (req,res) =>{
   res.render('test');
 })
+
+//----------수경
+
+router.get('/threeButton', (req,res) =>{
+  res.render('threeButton');
+})
+
+router.get('/threeButton1', (req,res) =>{
+  res.render('threeButton1');
+})
+
+
+router.get('/report', (req,res) =>{
+  res.render('report');
+})
+
+
+
 router.get('/insert', function (req, res, next) {
 
   const data = {
