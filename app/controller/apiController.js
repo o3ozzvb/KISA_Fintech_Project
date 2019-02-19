@@ -1,6 +1,7 @@
 const apiService = require('../service/api/apiService');
 const authService = require('../service/api/authService');
 const userService = require('../service/api/userService');
+const pigService = require('../service/db/pigService');
 const axios = require('axios');
 const apiUri = require("../service/api//apiUri");
 const {getUrl} = require("../common/util");
@@ -68,7 +69,7 @@ const account_balance = function (req, res, next) {
   userService.getUserByUserId(user_id)
     .then(user => {
       const reqConfig = {
-        params: {fintech_use_num:"199003877057724702970497",tran_dtime:"20190219132900"},
+        params: {fintech_use_num: "199003877057724702970497", tran_dtime: "20190219132900"},
         headers: { // 요청 헤더
           'Authorization': `Bearer ${user.user_accessToken}`
         }
@@ -83,55 +84,110 @@ const account_balance = function (req, res, next) {
     })
 }
 //입금이체2 계좌번호사용
-const transfer_deposit2= function(req,res,next){
+const transfer_deposit2 = function (req, res, next) {
 
-  const user_id=req.user.user_id;
+  const user_id = req.user.user_id;
   userService.getUserByUserId(user_id)
     .then(user => {
-      const reqConfig={
-        params:{
-                wd_pass_phrase:"NONE",
-                wd_print_content:"환불해드림..",
-               // "name_check_option":"off",
-                req_cnt:"1",
-                req_list:[
-                  {
-                    tran_no:"1",
-                    bank_code_std:"002",
-                    account_num:"9876543210987654",
-                    account_holder_name:"홍길동",
-                    print_content:"테스트베드",
-                    tran_amt:"10000"
-                  }
-                ],
-                tran_dtime:"20190219140620"
-              },
-              headers: { // 요청 헤더
-                'Authorization': `Bearer ${user.user_accessToken}`
-              }
+      const reqConfig = {
+        params: {
+          // wd_pass_phrase: "NONE",
+          wd_pass_phrase: "NONE",
+          wd_print_content: "환불해드림..",
+          name_check_option:"off",
+          req_cnt: "1",
+          req_list: [
+            {
+              tran_no: "1",
+              bank_code_std: "097",
+              account_num: "9876543210987654",
+              account_holder_name: "홍길동",
+              print_content: "테스트베드",
+              tran_amt: "10000"
             }
-      
-            apiService.transferDeposit2(reqConfig)
-              .then((data) => {
-                console.log(data.data);
-                return res.send(data.data)
-              })
-              .catch(error => res.send(error))
-          })
+          ],
+          tran_dtime: "20160310101921"
+        },
+        headers: { // 요청 헤더
+          'Authorization': `Bearer ${user.user_accessToken}`
+        }
       }
+
+      apiService.transferDeposit2(reqConfig)
+        .then((data) => {
+          console.log(data.data);
+          return res.send(data.data)
+        })
+        .catch(error => res.send(error))
+    })
+};
+
+const transfer_withdraw = (req, res, next) => {
+  const user_id = req.user.user_id;
+
+  userService.getUserByUserId(user_id)
+    .then(user => {
+      const reqConfig = {
+        params: {
+          dps_print_content: "입금계좌에 찍히는 문자",
+          fintech_use_num: "199003877057724702970497",
+          print_content: "출금계좌에 찍히는 문자",
+          tran_amt: "10000",    // 거래금액
+          tran_dtime: "20190310101921",  // 거래시
+          // cms_no: ""       // CMS 번호
+        },
+        headers: { // 요청 헤더
+          'Authorization': `Bearer ${user.user_accessToken}`
+        }
+      };
+
+      apiService.accountBalance(reqConfig)
+        .then((data) => {
+          console.log(data.data);
+          return res.send(data.data)
+        })
+        .catch(error => res.send(error))
+    })
+};
+
 
 //돼지 보유 여부 확인
 const mainPage = function (req, res, next) {
-
   const user_id = req.user.user_id;
-
+  
   pigService.getPigByUser(user_id)
     .then(rows => {
       if (rows.length == 0)
         return res.render("main");
       else
         return res.render("main2");
-    })
+    }).catch( error => res.send(error));
 }
 
-module.exports = {realname, user_me, account_list,account_balance,transfer_deposit2,mainPage};
+const insertPig = function(req,res,next){
+
+  const user_id = req.user.user_id;
+
+  const data = {
+    goal: req.body.goal,
+    minPeriod: '0',
+    myPeriod: '1',
+    budgetAmt: req.body.budgetAmt,
+    user_id: user_id,
+    //goalAmt: 'goalAmt',
+    withdrawAcct: '12345' //'withdrawAcct',
+  };
+
+  pigService.insertPig(data)
+  .then(result => res.render('main2'))
+  .catch( error => res.send(error));
+
+  console.log("insertPig")
+  console.log(req.body.goal);
+  res.send("success");
+
+
+}
+module.exports = {realname, user_me, account_list, account_balance,
+   transfer_deposit2, transfer_withdraw ,mainPage,insertPig};
+

@@ -19,9 +19,7 @@ passport.deserializeUser(function (user, done) {
 // 첫페이지
 router.get('/', function (req, res, next) {
   console.log(req.user);
-  res.render('index', {
-    title: 'Express'
-  });
+  res.render('login');
 });
 
 //로그인 페이지
@@ -44,7 +42,7 @@ router.post('/login',
 //로그아웃
 router.get('/logout', function (req, res) {
   req.logout();
-  res.redirect('/');
+  res.redirect('/login');
 });
 
 //사용자 정보조회 예제

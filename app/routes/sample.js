@@ -60,12 +60,40 @@ router.get('/main2', (req,res) =>{
   res.render('main2');
 })
 
+router.get('/test', (req,res) =>{
+  res.render('test');
+})
+
+//----------수경
+
+router.get('/threeButton', (req,res) =>{
+  res.render('threeButton');
+})
+
+router.get('/threeButton1', (req,res) =>{
+  res.render('threeButton1');
+})
+
+
+router.get('/report', (req,res) =>{
+  res.render('report');
+})
+
+
 router.get('/setTarget', (req,res) =>{
   res.render('set_target_page2');
 })
 
 router.get('/newcheckbox', (req, res) =>{
   res.render('newcheckbox');
+})
+
+router.get('/newfinal', (req,res) =>{
+  res.render('newfinal');
+})
+
+router.get('/testmain', (req,res) =>{
+  res.render('main');
 })
 
 router.get('/')

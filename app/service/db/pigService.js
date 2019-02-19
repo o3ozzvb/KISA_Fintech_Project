@@ -1,5 +1,5 @@
 const Promise = require("bluebird");
-const getSqlConnection = require('./../common/connection');
+const getSqlConnection = require('../../common/connection');
 
 const getPigByUser = (user_id) => {
     
@@ -11,3 +11,18 @@ const getPigByUser = (user_id) => {
       });
   });
 }
+
+const insertPig = (data) => {
+
+    res.send("test");
+
+    // Promise.using(getSqlConnection(),
+    // (connection) => {
+    //     var sql = "INSERT INTO pig SET ?";
+    //   return connection.query(sql, data)
+    //     .catch(function (error) {
+    //       console.log(error);
+    //     });
+    // });
+}
+module.exports = {getPigByUser, insertPig};

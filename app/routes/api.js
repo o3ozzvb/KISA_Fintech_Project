@@ -1,5 +1,6 @@
 const express = require('express');
-const { realname, user_me, account_list,account_balance,transfer_deposit2,mainPage } = require('../controller/apiController');
+const { realname, user_me, account_list, account_balance,
+    transfer_deposit2, transfer_withdraw, mainPage, insertPig } = require('../controller/apiController');
 const router = express.Router();
 const isAuthenticated = require('../common/isAuthenticated');
 
@@ -20,5 +21,11 @@ router.get('/transfer_deposit2',isAuthenticated,transfer_deposit2);
 
 //로그인 완료 후 첫 페이지
 router.get('/main', mainPage);
+
+//목표 db에 insert
+router.post('/createTarget', insertPig);
+
+//출금이체
+router.get('/transfer_withdraw', isAuthenticated, transfer_withdraw);
 
 module.exports = router;
