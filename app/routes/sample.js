@@ -53,6 +53,14 @@ router.get('/newcheckbox', (req, res) =>{
   res.render('newcheckbox');
 })
 
+router.get('/newfinal', (req,res) =>{
+  res.render('newfinal');
+})
+
+router.get('/testmain', (req,res) =>{
+  res.render('main');
+})
+
 router.get('/')
 router.get('/insert', function (req, res, next) {
 
