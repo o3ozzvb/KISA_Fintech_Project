@@ -1,5 +1,5 @@
 const express = require('express');
-const { realname, user_me, account_list } = require('../controller/apiController');
+const { realname, user_me, account_list,account_balance,transfer_deposit2 } = require('../controller/apiController');
 const router = express.Router();
 const isAuthenticated = require('../common/isAuthenticated');
 
@@ -9,8 +9,13 @@ router.get('/realname', isAuthenticated, realname);
 // 사용자 정보조회
 router.get('/user_me', isAuthenticated, user_me);
 
-
 // 등록계좌조회
 router.get('/account_list', isAuthenticated, account_list);
+
+//잔액조회
+router.get('/account_balance',isAuthenticated,account_balance);
+
+//입금이체
+router.get('/transfer_deposit2',isAuthenticated,transfer_deposit2);
 
 module.exports = router;
