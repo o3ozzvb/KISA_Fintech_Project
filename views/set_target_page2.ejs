@@ -1,71 +1,63 @@
 <!-- 은경 -->
 <%- layout('layout/layout') %>
+
 <body class="theme-light" data-background="none" data-highlight="blue2">
-        
-<div id="page">
-    <div class="page-content header-clear-medium">
-        <div class="content-boxed">
-            <div class="content">        
-                <div class="center-text font-30 bolder" style="padding-bottom: 30px; padding-top: 15px">Set Your Goal</div>
+        <div class="page-content">
+                <div data-height="cover-header" class="caption bottom-0">
+    <!-- <div id="page">
+        <div class="page-content header-clear-medium"> -->
+            <form class="caption-center" action="/login" method="post" id="loginForm" name="loginForm">
+                <div class="content-boxed">
+                    <div class="content">
+                        <div class="center-text font-30 bolder" style="padding-bottom: 30px; padding-top: 15px">Set Your
+                            Goal</div>
 
-                <div class="input-style input-style-2 input-required"> 
-                    <!-- 목표:  -->
-                    <span>목표를 입력하세요.</span>
-                    <em>(required)</em>
-                    <input type="text" id="goal" placeholder="">
-                </div> 
-
-                <div class="input-style input-style-2 input-required"> 
-                        <!-- 목표:  -->
-                        <span>목표금액을 입력하세요.</span>
-                        <em>(required)</em>
-                        <input type="text" id="goal" placeholder="">
-                    </div>
-
-                <div class="input-style input-style-2 input-required">
-                    <span>출금 계좌를 입력하세요.</span>
-                    <em>(required)</em>
-                    <input type="text" placeholder="">
-                </div>         
-
-                <div class="input-style input-style-2 input-required">
-                    <span>예산 사용 기간</span>
-                    <em><i class="fa fa-angle-down"></i></em>
-                    <select>
-                        <option value="default" disabled selected>Select a Value</option>
-                        <option value="1">하루</option>
-                        <option value="2">일주일</option>
-                        <option value="3">15일</option>
-                        <option value="4">1개월</option>
-                        <option value="5">직접 입력</option>
-                    </select>
-                </div>
-
-                <div class="input-style input-style-2 input-required">
-                        <span>예산을 입력하세요.</span>
-                        <em>(required)</em>
-                        <input type="text" placeholder="">
-                    </div>  
-
-                    <div class="input-style input-style-2 input-required">
-                            <span>적금 만료 일</span>
+                        <div class="input-style input-style-2 input-required">
+                            <span>목표를 입력하세요.</span>
                             <em>(required)</em>
-                            <!-- <input type="text" placeholder=""> -->
-                            <input type="date" value="1980-08-26">
-                        </div>  
-                <!-- <div class="input-style input-style-2 input-required">
-                    <span>Enter your Message</span>
-                    <em>(required)</em>
-                    <textarea placeholder=""></textarea>
-                </div> -->
-                <div class="content center-text">
-                <a href="#" class="button button-m shadow-small bg-mint-dark">Get A Pig</a>
-            </div>
-            </div>
-        </div>
-            
+                            <input type="text" id="goal" placeholder="">
+                        </div>
 
-<script type="text/javascript" src="/scripts/jquery.js"></script>
-<script type="text/javascript" src="/scripts/plugins.js"></script>
-<script type="text/javascript" src="/scripts/custom.js"></script>
+                        <div class="input-style input-style-2 input-required">
+                            <span>목표금액을 입력하세요.</span>
+                            <em>(required)</em>
+                            <input type="text" id="goal" placeholder="">
+                        </div>
+
+                        <div class="input-style input-style-2 input-required">
+                            <span>출금 계좌를 입력하세요.</span>
+                            <em>(required)</em>
+                            <input type="text" placeholder="">
+                        </div>
+
+                        <div class="input-style input-style-2 input-required">
+                            <span>예산 사용 기간</span>
+                            <em><i class="fa fa-angle-down"></i></em>
+                            <select>
+                                <option value="default" disabled selected>Select a Value</option>
+                                <option value="1">하루</option>
+                                <option value="2">일주일</option>
+                                <option value="3">15일</option>
+                                <option value="4">1개월</option>
+                                <option value="5">직접 입력</option>
+                            </select>
+                        </div>
+
+                        <div class="input-style input-style-2 input-required">
+                            <span>예산을 입력하세요.</span>
+                            <em>(required)</em>
+                            <input type="text" placeholder="">
+                        </div>
+
+                        <div class="center-text content bottom-0">
+                            <a href="main2" class="button button-m shadow-small bg-mint-dark">Get A Pig</a>
+                        </div>
+            </form>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="/scripts/jquery.js"></script>
+    <script type="text/javascript" src="/scripts/plugins.js"></script>
+    <script type="text/javascript" src="/scripts/custom.js"></script>
 </body>
