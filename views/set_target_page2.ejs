@@ -1,15 +1,37 @@
 <!-- 은경 -->
 <%- layout('layout/layout') %>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"
+    integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous">
+    </script>
+<script>
+    $.ajax({
+        url: '/api/account_list',
+        success: function (data) {
+            console.log(data);
+            var res_list = data.res_list;
+            console.log(res_list);
+            var x = document.getElementById("list");
+            var option = document.createElement("option");
+            var idx = 0;
+            for (var i = 0; i < res_list.length; i++) {
+                console.log(res_list[i]);
+                $("#list").append("<option>" + res_list[i].bank_name + ' - ' + res_list[i].account_num_masked + '</option>')
+
+            }
+        }
+    })
+</script>
 
 <body class="theme-light" data-background="none" data-highlight="blue2">
-        <div class="page-content">
-                <div data-height="cover-header" class="caption bottom-0">
-    <!-- <div id="page">
+    <div class="page-content">
+        <div data-height="cover-header" class="caption bottom-0">
+            <!-- <div id="page">
         <div class="page-content header-clear-medium"> -->
             <form class="caption-center" action="/api/createTarget" method="post" id="createTarget" name="createTarget">
                 <div class="content-boxed">
                     <div class="content">
-                        <div class="center-text font-30 bolder" style="padding-bottom: 30px; padding-top: 15px">나의 목표</div>
+                        <div class="center-text font-30 bolder" style="padding-bottom: 30px; padding-top: 15px">나의 목표
+                        </div>
 
                         <div class="input-style input-style-2 input-required">
                             <span>목표를 입력하세요.</span>
@@ -24,31 +46,24 @@
                         </div>
 
                         <div class="input-style input-style-2 input-required">
-                                <span>출금 계좌를 선택하세요.</span>
-                                <em><i class="fa fa-angle-down"></i></em>
-                                <select id="list">
-                                    <option value="text" name="withdrawAcct" disabled selected>Select a Value</option>
-                                </select>
-                            </div>
-                            <script
-                                src="https://code.jquery.com/jquery-2.2.4.min.js"
-                                integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-                                crossorigin="anonymous">
-                            </script>
-                            <script>
-                                $("#list").append("<option>다른값<option>")
-                            </script>
+                            <span>출금 계좌를 선택하세요.</span>
+                            <em><i class="fa fa-angle-down"></i></em>
+                            <select id="list" name="withdrawAcct">
+                                <option value="text" disabled selected>Select a Value</option>
+                            </select>
+                        </div>
+
+
 
                         <div class="input-style input-style-2 input-required">
                             <span>예산 사용 기간</span>
                             <em><i class="fa fa-angle-down"></i></em>
-                            <select >
+                            <select name="myPeriod">
                                 <option value="default" disabled selected>Select a Value</option>
-                                <option value="1">하루</option>
-                                <option value="2">일주일</option>
-                                <option value="3">15일</option>
-                                <option value="4">1개월</option>
-                                <option value="5">직접 입력</option>
+                                <option value="하루">하루</option>
+                                <option value="일주일">일주일</option>
+                                <option value="15일">15일</option>
+                                <option value="1개월">1개월</option>
                             </select>
                         </div>
 
@@ -59,20 +74,18 @@
                         </div>
 
                         <div class="center-text content bottom-0">
-                            <a href="#" onclick="onSubmit()" class="button button-m shadow-small bg-mint-dark">돼지 키우기!</a>
+                            <a href="#" onclick="onSubmit()" class="button button-m shadow-small bg-mint-dark">돼지
+                                키우기!</a>
                         </div>
                         <script>
-                                function onSubmit(){
-                                    document.getElementById('createTarget').submit()
-                                }
-                              </script>
+                            function onSubmit() {
+                                document.getElementById('createTarget').submit()
+                            }
+                        </script>
             </form>
         </div>
     </div>
 
-<<<<<<< HEAD
-=======
 
-  
->>>>>>> 2874d29e2d16bfc956db4a64b94171ad4495e6f8
+
 </body>
