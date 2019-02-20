@@ -19,7 +19,7 @@ passport.deserializeUser(function (user, done) {
 // 첫페이지
 router.get('/', function (req, res, next) {
   console.log(req.user);
-  res.render('login');
+  res.render('newLogin');
 });
 
 //로그인 페이지
@@ -27,7 +27,7 @@ router.get('/login', function (req, res) {
   if (req.user !== undefined) {
     res.redirect('/')
   } else {
-    res.render('login', {
+    res.render('newLogin', {
       title: 'login'
     })
   }
