@@ -57,6 +57,11 @@ router.get('/newfinal', (req,res) =>{
   res.render('newfinal');
 });
 
+
+router.get('/home', (req,res) =>{
+  res.render('home');
+});
+
 router.get('/testmain', (req,res) =>{
   res.render('main');
 });
