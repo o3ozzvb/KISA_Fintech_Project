@@ -208,14 +208,14 @@ const insertPig = function(req,res,next){
   const user_id = req.user.user_id;
 
   const data = {
-    goal: req.user.goal,
-    isTogether:'0', //제승추가
+    goal: req.body.goal,
+   // isTogether:'0', //제승추가
     minPeriod: '0',
     myPeriod: '1',
     budgetAmt: req.body.budgetAmt,
     user_id: user_id,
     //goalAmt: 'goalAmt',
-    together_id:'null', //제승추가
+    //together_id:'null', //제승추가
     withdraw_acct: '12345' //'withdrawAcct',
   };
   console.log(data);
@@ -235,5 +235,27 @@ const insertPig = function(req,res,next){
 
 }
 
+const insertAccount = function(req,res,next){
+  const user_id = req.user.user_id;
+  const data = {
+    fintech_use_num: "199003877057724702970497"
+  };
+  console.log(data);
+
+  pigService.insertAccount(data)
+  .then(result => {
+    console.log(result);
+   // res.render('main2')
+  })
+  .catch( error => console.log(error));
+
+  // console.log("insertPig")
+  // console.log(req.body.goal);
+  // res.send("success");
+
+  console.log("insertAccount")
+
+}
+
 module.exports = {realname, user_me, account_list, account_balance, transfer_deposit2, transfer_withdraw
-  ,account_transaction_list,mainPage,insertPig};
+  ,account_transaction_list,mainPage,insertPig,insertAccount};

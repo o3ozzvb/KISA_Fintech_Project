@@ -23,4 +23,17 @@ const insertPig = (data) => {
         });
     });
 }
-module.exports = {getPigByUser, insertPig};
+
+const insertAccount = (data) => {
+
+  return Promise.using(getSqlConnection(),
+  (connection) => {
+      var sql = "INSERT INTO account SET ?";
+    return connection.query(sql, data)
+      .catch(function (error) {
+        console.log(error);
+      });
+  });
+}
+
+module.exports = {getPigByUser, insertPig,insertAccount};
