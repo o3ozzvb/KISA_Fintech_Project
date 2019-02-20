@@ -84,10 +84,9 @@ const account_balance = function (req, res, next) {
 }
 //입금이체2 계좌번호사용
 const transfer_deposit2 = function (req, res, next) {
-
   const user_id = req.user.user_id;
   userService.getUserByUserId(user_id)
-    .then(user => {
+  .then(user => {
       const reqConfig = {
         params: {
           // wd_pass_phrase: "NONE",
@@ -108,7 +107,7 @@ const transfer_deposit2 = function (req, res, next) {
           tran_dtime: "20160310101921"
         },
         headers: { // 요청 헤더
-          'Authorization': `Bearer ${user.user_accessToken}`
+          'Authorization': `Bearer 08e28d74-664a-4cd8-91da-4a1b38a9aaea`
         }
       }
 
