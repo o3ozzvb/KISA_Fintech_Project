@@ -208,6 +208,7 @@ const insertPig = function(req,res,next){
     //goalAmt: 'goalAmt',
     withdraw_acct: '12345' //'withdrawAcct',
   };
+  console.log(data);
 
   pigService.insertPig(data)
   .then(result => {
@@ -215,6 +216,10 @@ const insertPig = function(req,res,next){
     res.render('main2')
   })
   .catch( error => console.log(error));
+
+  // console.log("insertPig")
+  // console.log(req.body.goal);
+  // res.send("success");
 
   console.log("insertPig")
 
