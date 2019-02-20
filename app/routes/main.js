@@ -41,13 +41,10 @@ router.get('/report', (req,res) =>{
   res.render('report');
 });
 
-<<<<<<< HEAD
-=======
 router.get('/listPayment', (req,res) =>{
   res.render('listPayment');
 });
 
->>>>>>> 2874d29e2d16bfc956db4a64b94171ad4495e6f8
 router.get('/setTarget', (req,res) =>{
   res.render('set_target_page2');
 });
