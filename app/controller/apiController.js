@@ -180,7 +180,9 @@ const account_transaction_list=(req,res,next)=>{
       .catch(error=> res.send(error))
     })
 };
-
+const loginPage = function(req, res, next) {
+  
+}
 
 //돼지 보유 여부 확인
 const mainPage = function (req, res, next) {
