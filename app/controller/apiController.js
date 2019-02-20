@@ -60,7 +60,8 @@ const account_list = function (req, res, next) {
         })
         .catch(error => res.send(error))
     })
-}
+};
+
 //잔액조회
 const account_balance = function (req, res, next) {
 
@@ -69,7 +70,7 @@ const account_balance = function (req, res, next) {
   userService.getUserByUserId(user_id)
     .then(user => {
       const reqConfig = {
-        params: {fintech_use_num: "199003877057724702970497", tran_dtime: "20190219132900"},
+        params: {fintech_use_num: "199003877057724702985550", tran_dtime: "20190219132900"},
         headers: { // 요청 헤더
           'Authorization': `Bearer ${user.user_accessToken}`
         }
@@ -187,8 +188,10 @@ const mainPage = function (req, res, next) {
   
   pigService.getPigByUser(user_id)
     .then(rows => {
-      if (rows.length == 0)
+      if (rows.length == 0) {
+        console.log(rows);
         return res.render("main");
+      }
       else
         return res.render("main2");
     }).catch( error => res.send(error));
