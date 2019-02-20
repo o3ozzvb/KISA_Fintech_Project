@@ -41,7 +41,6 @@ router.get('/report', (req,res) =>{
   res.render('report');
 });
 
-
 router.get('/setTarget', (req,res) =>{
   res.render('set_target_page2');
 });

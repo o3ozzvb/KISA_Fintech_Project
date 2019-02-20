@@ -12,10 +12,16 @@
                             <div id="result_name"> </div><li>님 축하합니다!</li>
                             <div id="result_day"> </div><li>일 기간동안</li>
                             <div id="result_money"> </div><li>원 모으셨습니다.</li>
-                        <li style="color:darkorchid">* 돼지를 눌러 선물을 확인하세요</li>
+                        <li style="color:darkorchid">* 버튼을 눌러 깜짝 선물을 확인하세요</li>
                     </ul>
                     <!-- <h3 class="pricing-value center-text bottom-30 color-green-dark">$19<sup>.99</sup></h3> -->
-                    <a href="#" class="button bg-green1-dark button-s button-round uppercase button-center-medium bottom-10">확인</a>
+                    <a href="#" onclick="show_threebutton()" class="button bg-green1-dark button-s button-round uppercase button-center-medium bottom-10">선물 받기</a>
+                    <!-- <button class="button bg-green1-dark button-s button-round uppercase button-center-medium bottom-10" style="padding-"> 테스트</button> -->
+                    <script>
+                        function show_threebutton() {
+                            window.location.href="threeButton";
+                        }
+                    </script>
                 </div>		
                 <div class="clear"></div>
             </div>		

@@ -13,12 +13,6 @@ const getPigByUser = (user_id) => {
 }
 
 const insertPig = (data) => {
-<<<<<<< HEAD
-
-    // res.send("test");
-=======
->>>>>>> cd6fd91968675951bb52b3e39277fbbadb260b64
-
     return Promise.using(getSqlConnection(),
     (connection) => {
         var sql = "INSERT INTO pig SET ?";
