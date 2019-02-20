@@ -14,6 +14,7 @@ const indexRouter = require('./app/routes/index');
 const apiRouter = require('./app/routes/api');
 const oAuthRouter = require('./app/routes/auth');
 const sampleRouter = require('./app/routes/sample');
+const mainRouter = require('./app/routes/main');
 
 const app = express();
 
@@ -46,6 +47,7 @@ app.use(passport.session());
 app.use('/', indexRouter);
 app.use('/auth', oAuthRouter);
 app.use('/api', apiRouter);
+app.use('/main', mainRouter);
 app.use('/sample', sampleRouter);
 
 // catch 404 and forward to error handler
