@@ -41,6 +41,9 @@ router.get('/report', (req,res) =>{
   res.render('report');
 });
 
+router.get('/listPayment', (req,res) =>{
+  res.render('listPayment');
+});
 
 router.get('/setTarget', (req,res) =>{
   res.render('set_target_page2');
@@ -53,7 +56,6 @@ router.get('/newcheckbox', (req, res) =>{
 router.get('/newfinal', (req,res) =>{
   res.render('newfinal');
 });
-
 
 router.get('/home', (req,res) =>{
   res.render('home');

@@ -68,6 +68,11 @@ router.post("/signup",
   });
 
 
+router.get("/home", (req,res, next) => {
+  console.log("test");
+  res.render('home')
+})
+
 // 로그인 요청처리시 DB에서 사용자를 조회 패스워드 일치여부확인 후 인증 완료 처리
 passport.use(new LocalStrategy({
   usernameField: 'username',

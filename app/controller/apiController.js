@@ -157,7 +157,8 @@ const account_transaction_list=(req,res,next)=>{
     .then(user => {
       const reqConfig={
         params:{
-          fintech_use_num:"199003877057724702970497",
+          // fintech_use_num:"199003877057724702970497",
+          fintech_use_num:"199003877057724702985550",
           inquiry_type:"A",
           from_date:"20190218",
           to_date:"20190219",
@@ -179,16 +180,6 @@ const account_transaction_list=(req,res,next)=>{
       .catch(error=> res.send(error))
     })
 };
-/*
-const mainPage = function (req, res, next) {
-  const user_id = req.user.user_id;
-  
-  userService.getUserByUserId(user_id)
-    .then(
-        res.render("home")
-
-    ).catch( error => res.send(error));
-}*/
 
 //돼지 보유 여부 확인
 const mainPage = function (req, res, next) {
