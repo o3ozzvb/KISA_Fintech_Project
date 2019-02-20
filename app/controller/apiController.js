@@ -1,6 +1,7 @@
 const apiService = require('../service/api/apiService');
 const authService = require('../service/api/authService');
 const userService = require('../service/api/userService');
+const pigService = require('../service/db/pigService');
 const axios = require('axios');
 const apiUri = require("../service/api//apiUri");
 const {getUrl} = require("../common/util");
@@ -179,4 +180,49 @@ const account_transaction_list=(req,res,next)=>{
     })
 };
 
-module.exports = {realname, user_me, account_list, account_balance, transfer_deposit2, transfer_withdraw,account_transaction_list};
+
+//돼지 보유 여부 확인
+const mainPage = function (req, res, next) {
+  const user_id = req.user.user_id;
+  
+  pigService.getPigByUser(user_id)
+    .then(rows => {
+      if (rows.length == 0)
+        return res.render("main");
+      else
+        return res.render("main2");
+    }).catch( error => res.send(error));
+}
+
+const insertPig = function(req,res,next){
+
+  const user_id = req.user.user_id;
+
+  const data = {
+    goal: req.body.goal,
+    minPeriod: '0',
+    myPeriod: '1',
+    budgetAmt: req.body.budgetAmt,
+    user_id: user_id,
+    //goalAmt: 'goalAmt',
+    withdraw_acct: '12345' //'withdrawAcct',
+  };
+  console.log(data);
+
+  pigService.insertPig(data)
+  .then(result => {
+    console.log(result);
+    res.render('main2')
+  })
+  .catch( error => console.log(error));
+
+  // console.log("insertPig")
+  // console.log(req.body.goal);
+  // res.send("success");
+
+  console.log("insertPig")
+
+}
+
+module.exports = {realname, user_me, account_list, account_balance, transfer_deposit2, transfer_withdraw
+  ,account_transaction_list,mainPage,insertPig};
