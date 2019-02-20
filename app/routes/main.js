@@ -67,7 +67,35 @@ router.get('/testmain', (req,res) =>{
 });
 
 router.get('/newlist', (req, res) =>{
-  res.render('newlist');
+  // res.render('newlist');
+  const user_id=req.user.user_id;
+
+  userService.getUserByUserId(user_id)
+    .then(user => {
+      const reqConfig={
+        params:{
+          fintech_use_num:"199003877057724702970497",
+          inquiry_type:"A",
+          from_date:"20190218",
+          to_date:"20190219",
+          sort_order:"D",
+          page_index:"1",
+          tran_dtime:"20190219174500",
+          befor_inquiry_trace_info:"123",
+          list_tran_seqno:"0"
+        },
+        headers:{
+          'Authorization':`Bearer ${user.user_accessToken}`
+        }
+      };
+      apiService.accountTransactionList(reqConfig)
+      .then((result)=>{
+        console.log(result.data);
+        return res.render(result.data)
+      })
+      .catch(error=> res.send(error))
+    })
+
 });
 
 module.exports = router;
