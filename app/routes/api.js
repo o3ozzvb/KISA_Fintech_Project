@@ -18,6 +18,8 @@ router.get('/account_balance',isAuthenticated,account_balance);
 //입금이체
 router.get('/transfer_deposit2',isAuthenticated,transfer_deposit2);
 
+
+
 //로그인 완료 후 첫 페이지
 router.get('/main', mainPage);
 
