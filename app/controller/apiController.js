@@ -157,7 +157,8 @@ const account_transaction_list=(req,res,next)=>{
     .then(user => {
       const reqConfig={
         params:{
-          fintech_use_num:"199003877057724702970497",
+          // fintech_use_num:"199003877057724702970497",
+          fintech_use_num:"199003877057724702985550",
           inquiry_type:"A",
           from_date:"20190218",
           to_date:"20190219",
