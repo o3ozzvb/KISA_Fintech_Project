@@ -23,6 +23,12 @@ router.get('/transfer_deposit2',isAuthenticated,transfer_deposit2);
 //로그인 완료 후 첫 페이지
 router.get('/main', mainPage);
 
+//테스트Oauth받기위한임시변수 by 제승
+router.get('/home', (req,res) =>{
+    res.render('home');
+  });
+  ///
+
 //목표 db에 insert
 router.post('/createTarget', insertPig);
 

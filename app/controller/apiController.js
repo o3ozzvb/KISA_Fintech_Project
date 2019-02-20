@@ -208,12 +208,14 @@ const insertPig = function(req,res,next){
   const user_id = req.user.user_id;
 
   const data = {
-    goal: req.body.goal,
+    goal: req.user.goal,
+    isTogether:'0', //제승추가
     minPeriod: '0',
     myPeriod: '1',
     budgetAmt: req.body.budgetAmt,
     user_id: user_id,
     //goalAmt: 'goalAmt',
+    together_id:'null', //제승추가
     withdraw_acct: '12345' //'withdrawAcct',
   };
   console.log(data);
