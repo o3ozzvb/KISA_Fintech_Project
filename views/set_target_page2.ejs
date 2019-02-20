@@ -26,15 +26,23 @@
                         <div class="input-style input-style-2 input-required">
                                 <span>출금 계좌를 선택하세요.</span>
                                 <em><i class="fa fa-angle-down"></i></em>
-                                <select>
+                                <select id="list">
                                     <option value="text" name="withdrawAcct" disabled selected>Select a Value</option>
                                 </select>
                             </div>
-                            
+                            <script
+                                src="https://code.jquery.com/jquery-2.2.4.min.js"
+                                integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+                                crossorigin="anonymous">
+                            </script>
+                            <script>
+                                $("#list").append("<option>다른값<option>")
+                            </script>
+
                         <div class="input-style input-style-2 input-required">
                             <span>예산 사용 기간</span>
                             <em><i class="fa fa-angle-down"></i></em>
-                            <select>
+                            <select >
                                 <option value="default" disabled selected>Select a Value</option>
                                 <option value="1">하루</option>
                                 <option value="2">일주일</option>
@@ -62,4 +70,9 @@
         </div>
     </div>
 
+<<<<<<< HEAD
+=======
+
+  
+>>>>>>> 2874d29e2d16bfc956db4a64b94171ad4495e6f8
 </body>

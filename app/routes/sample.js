@@ -1,3 +1,4 @@
+
 const express = require('express');
 // var mysql      = require('mysql');
 const router = express.Router();
@@ -7,7 +8,7 @@ const { updateAccessToken } = require( '../service/api/userService');
 
 router.get('/query', function(req, res, next) {
 
-  updateAccessToken("dongs", {user_accessToken: "tokne", user_seq_no: "1111"}
+  updateAccessToken("dongs", {user_accessToken: "token", user_seq_no: "1111"}
     // .then(
     // data => res.send(data)
   )
