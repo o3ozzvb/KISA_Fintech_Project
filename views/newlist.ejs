@@ -1,6 +1,5 @@
 <%- layout('layout/layout') %>
 <div class="page-content header-clear-medium">	
-        <link rel="stylesheet" type="text/css" href="styles/blog.css">
         <div class="search-trending content-boxed shadow-large">
                 <div class="content bottom-15"> 
                 <!-- <ul class="bottom-15">
@@ -16,7 +15,20 @@
                           <th>날짜</th>
                           <th>저금 금액</th>
                         </tr>
-                        <tr>
+                        <%
+
+                        var amount = 0;
+                        for(var i=0; i < tx_list.length ;i++){
+
+                        %>
+                          <tr>
+                            <td><%= tx_list[i].tran_date %></td>
+                              <td><%= tx_list[i].tran_amt %></td>
+                          </tr>
+                          <%
+                            amount = amount + Number(tx_list[i].tran_amt);
+                        } %>
+                        <!-- <tr>
                           <td>2019 - 02 - 19</td>
                           <td>12000원</td>
                         </tr>
@@ -30,9 +42,9 @@
                           <td>2019 - 02 - 19</td>
                           <td>6500원</td>
                         </tr>
-                        
+                         -->
                 </table>
-                      
+                      <%= amount%>
              </div>
         </div>
 </div>

@@ -18,8 +18,15 @@ passport.deserializeUser(function (user, done) {
 
 // 첫페이지
 router.get('/', function (req, res, next) {
-  console.log(req.user);
-  res.render('newLogin');
+  // console.log(req.user);
+  // res.render('newLogin');
+
+  if (req.user !== undefined) {
+    res.redirect('/api/main')
+  } else {
+    res.render('newLogin')
+  }
+
 });
 
 //로그인 페이지
@@ -27,9 +34,7 @@ router.get('/login', function (req, res) {
   if (req.user !== undefined) {
     res.redirect('/')
   } else {
-    res.render('newLogin', {
-      title: 'login'
-    })
+    res.render('newLogin')
   }
 });
 
@@ -68,7 +73,7 @@ router.post("/signup",
   });
 
 
-router.get("/home", (req,res, next) => {
+router.get("/home", isAuthenticated, (req,res, next) => {
   console.log("test");
   res.render('home')
 })
