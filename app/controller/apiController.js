@@ -4,7 +4,7 @@ const userService = require('../service/api/userService');
 const pigService = require('../service/db/pigService');
 const axios = require('axios');
 const apiUri = require("../service/api//apiUri");
-const {getUrl} = require("../common/util");
+const { getUrl } = require("../common/util");
 
 const realname = function (req, res, next) {
 
@@ -19,7 +19,7 @@ const realname = function (req, res, next) {
   authService.accessToken().then((response) => {
     //액세스 토큰발급
     const accessToken = response.data.access_token;
-    const config = {headers: {'Authorization': `Bearer ${accessToken}`}};
+    const config = { headers: { 'Authorization': `Bearer ${accessToken}` } };
 
     //토근발급후 실명조회
     apiService.realName(data, config).then((response) => {
@@ -47,7 +47,7 @@ const account_list = function (req, res, next) {
   userService.getUserByUserId(user_id)
     .then(user => {
       const reqConfig = {
-        params: {user_seq_no: user.user_seq_no, include_cancel_yn: "Y", sort_order: "D"},
+        params: { user_seq_no: user.user_seq_no, include_cancel_yn: "Y", sort_order: "D" },
         headers: { // 요청 헤더
           'Authorization': `Bearer ${user.user_accessToken}`
         }
@@ -69,7 +69,7 @@ const account_balance = function (req, res, next) {
   userService.getUserByUserId(user_id)
     .then(user => {
       const reqConfig = {
-        params: {fintech_use_num: "199003877057724702985550", tran_dtime: "20190219132900"},
+        params: { fintech_use_num: "199003877057724702985550", tran_dtime: "20190219132900" },
         headers: { // 요청 헤더
           'Authorization': `Bearer ${user.user_accessToken}`
         }
@@ -181,7 +181,7 @@ const account_transaction_list = (req, res, next) => {
     })
 };
 
-//돼지 보유 여부 확인
+//돼지 보유 여부 확인 & 돼지 정보
 const mainPage = function (req, res, next) {
   const user_id = req.user.user_id;
 
@@ -189,7 +189,9 @@ const mainPage = function (req, res, next) {
     pig: {},
     saved_money: 0,
     today_save_money: 0,
-    pig_weight: 0
+    pig_weight: 0,
+    // my_period: 0,
+    // my_period_str : ''
   };
 
   pigService.getPigByUser(user_id).then(rows => {
@@ -200,26 +202,27 @@ const mainPage = function (req, res, next) {
       return userService.getUserByUserId(user_id)
     }
   }).then(user => {
-      const reqConfig = {
-        params: {
-          fintech_use_num: "199003877057724702985550",
-          inquiry_type: "A",
-          from_date: "20190218",
-          to_date: "20190219",
-          sort_order: "D",
-          page_index: "1",
-          tran_dtime: "20190219174500",
-          befor_inquiry_trace_info: "123",
-          list_tran_seqno: "0"
-        },
-        headers: {
-          'Authorization': `Bearer ${user.user_accessToken}`
-        }
-      };
-      return apiService.accountTransactionList(reqConfig)
+    const reqConfig = {
+      params: {
+        fintech_use_num: "199003877057724702985550",
+        inquiry_type: "A",
+        from_date: "20190218",
+        to_date: "20190219",
+        sort_order: "D",
+        page_index: "1",
+        tran_dtime: "20190219174500",
+        befor_inquiry_trace_info: "123",
+        list_tran_seqno: "0"
+      },
+      headers: {
+        'Authorization': `Bearer ${user.user_accessToken}`
+      }
+    };
+    return apiService.accountTransactionList(reqConfig)
 
-    }).then((responseData) => {
+  }).then((responseData) => {
 
+    //적금 총액 계산
     let filteredData = responseData.data.res_list.filter(function (item) {
       return item.print_content == '돼지적금'
     });
@@ -228,17 +231,21 @@ const mainPage = function (req, res, next) {
     for (let i = 0; i < filteredData.length; i++) {
       amount = amount + Number(filteredData[i].tran_amt)
     }
+    result.weight = amount / Number(result.pig.goalAmt) * 100;
 
-    result.saved_money = amount;
+    let restAmt = 0;
+    for (let i = filteredData.length - 1; i >= 0; i--) {
+      if (filteredData[i].inout_type == 'in') break;
+      restAmt = amount + Number(filteredData[i].tran_amt)
+    }
+    result.today_save_money = restAmt;
 
-    userService.getUserByUserId(user_id);
-
-    console.log(result);
-    return res.render("main2", { pigData : result});
+    //console.log(result);
+    return res.render("main2", { pigData: result });
+  }).catch( error => {
+    console.log(error)
   })
 };
-
-
 
 const insertPig = function (req, res, next) {
 
@@ -261,7 +268,7 @@ const insertPig = function (req, res, next) {
   pigService.insertPig(data)
     .then(result => {
       console.log(result);
-      res.render('main2')
+      res.redirect('/api/main')
     })
     .catch(error => console.log(error));
 }
