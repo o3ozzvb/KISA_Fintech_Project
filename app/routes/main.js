@@ -60,7 +60,6 @@ router.get('/listPayment', isAuthenticated, (req, res) => {
           'Authorization': `Bearer ${user.user_accessToken}`
         }
       };
-      console.log("dsafsdafsdajflhdskjalfhkjsdalfhlkjdsa");
       return apiService.accountTransactionList(reqConfig)
 
     }).then((result) => {
