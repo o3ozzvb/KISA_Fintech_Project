@@ -76,9 +76,9 @@ router.get('/setTarget', (req, res) => {
   res.render('set_target_page2');
 });
 
-router.get('/newcheckbox', (req, res) => {
-  res.render('newcheckbox');
-});
+// router.get('/newcheckbox', (req, res) => {
+//   res.render('newcheckbox');
+// });
 
 router.get('/newfinal', (req, res) => {
   res.render('newfinal');
@@ -93,7 +93,7 @@ router.get('/testmain', (req, res) => {
 });
 
 router.get('/goalList', (req, res) => {
-  res.render('check_solution');
+  res.render('goalList');
 })
 
 router.get('/newlist', isAuthenticated, (req, res) => {
