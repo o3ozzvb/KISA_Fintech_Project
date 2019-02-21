@@ -6,10 +6,10 @@
                 <% for(var i=0; i < tx_list.length ;i++){ %>
                 <div class="timeline-item">
                     <% if(tx_list[i].inout_type == '입금') {%>
-                    <i class="fa fa-plus bg-blue2-dark shadow-large"></i>
+                    <i class="fa fa-plus bg-pink2-dark shadow-large"></i>
                     <%}%>
                     <% if(tx_list[i].inout_type != '입금') {%>
-                        <i class="fa fa-minus bg-pink2-dark shadow-large"></i>
+                        <i class="fa fa-minus bg-blue2-dark shadow-large"></i>
                     <%}%>
                     <div class="timeline-item-content round-medium">
                         <span class="left-15 text-left"><%= tx_list[i].tran_date %><br></span>
