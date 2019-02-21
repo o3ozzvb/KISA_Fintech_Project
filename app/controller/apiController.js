@@ -233,7 +233,7 @@ const mainPage = function (req, res, next) {
       amount = amount + Number(filteredData[i].tran_amt)
     }
     result.saved_money = Number(result.pig.goalAmt) - amount;
-    result.weight = result.saved_money / Number(result.pig.goalAmt) * 100;
+    result.weight = amount / Number(result.pig.goalAmt) * 100;
     
 
     let restAmt = 0;
