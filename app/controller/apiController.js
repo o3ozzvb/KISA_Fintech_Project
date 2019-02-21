@@ -262,7 +262,9 @@ const insertPig = function (req, res, next) {
     goalAmt: req.body.goalAmt,
     //together_id:'null', //제승추가
     withdraw_acct: req.body.withdrawAcct, //'withdrawAcct',
-    fintech_use_num: '199003877057724702970497'
+    fintech_use_num: '199003877057724702970497',
+    create_date:req.body.create_date,
+    promise:req.body.promise
   };
   console.log(data);
 
