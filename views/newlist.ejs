@@ -37,10 +37,10 @@
                     <i class="fa fa-plus bg-pink2-dark shadow-large"></i>
                     <div class="timeline-item-content round-medium">
                         <h5 class="">
+                                <p style="font-size: 18px"><%= tx_list[i].tran_date %></p>         
                             <span style="font-size: 30px"><%= i+1%>회차</span>
-                            <p style="font-size: 25px"><%= tx_list[i].tran_date %></p>
-                            <p style="font-size: 25px"><%= tranDate[i].tran_date %></p>
-                            <p class="text-right" style="font-size:30px"><%= tx_list[i].tran_amt %>원</p>
+                                               
+                            <div class="right-15 text-right bolder" style="font-size:25px" ><%= tx_list[i].tran_amt %>원</div>
                             
                         <!-- <%= amount%> -->
                         </h5>
