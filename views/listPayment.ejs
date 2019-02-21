@@ -11,18 +11,18 @@
                     <li><a href="#">Kolor Mobile<i class="fa fa-angle-right"></i></a></li>
                     <li class="no-border"><a href="#">Vinga Mobile<i class="fa fa-angle-right"></i></a></li>
                 </ul> -->
-                <table  >
+                <table>
                         <tr>
-                          <th  style="background:#A9F5BC;font-family: fantasy ">거래 내역</th>
-                          <th  style="background:#A9F5BC;font-family: fantasy ">일시</th>
-                          <th  style="background:#A9F5BC;font-family: fantasy ">사용 금액</th>
+                          <th  style="background:rgb(190, 187, 180);font-family: fantasy;font-size:20px ">거래 내역</th>
+                          <th  style="background:rgb(190, 187, 180);font-family: fantasy;font-size:20px ">일시</th>
+                          <th  style="background:rgb(190, 187, 180);font-family: fantasy;font-size:20px ">사용 금액</th>
                         </tr>
 
                     <% for(var i=0; i < tx_list.length ;i++){ %>
                         <tr>
-                            <td><%= tx_list[i].print_content %></td>
-                            <td><%= tx_list[i].tran_date %></td>
-                            <td><%= tx_list[i].tran_amt %></td>
+                            <td style="font-size: 17px"><%= tx_list[i].print_content %></td>
+                            <td style="font-size: 17px"><%= tx_list[i].tran_date %></td>
+                            <td style="font-size: 17px"><%= tx_list[i].tran_amt %></td>
                         </tr>
                     <% } %>
                 </table>
