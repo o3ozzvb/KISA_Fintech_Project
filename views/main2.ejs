@@ -12,7 +12,7 @@
                 <a href="#" onclick="showPayment()" class="button button-round-huge button-center-large button-s"
                     style="background: #CEC0AE"
                 >
-                   <h3> <%= pigData.pig.goalAmt - pigData.pig.goalAmt %> 남았습니다. </h3></a>
+                   <h3> <%= pigData.saved_money %>원 남았습니다. </h3></a>
             </div>
         </div>
 
@@ -41,21 +41,21 @@
         <div class="content top-10 bottom-0">
 
             <h6 class="center-text uppercase bolder color-highlight">목표금액</h6>
-            <h1 class="center-text uppercase ultrabold fa-3x"><%= pigData.pig.goalAmt %></h1>
+            <h1 class="center-text uppercase ultrabold fa-3x"><%= pigData.pig.goalAmt %>원</h1>
             <!--<p class="boxed-text-large">We've served over 30.000 Customers. We're delighted to see happy customers!-->
 
             </p><div class="divider"></div>
 
             <div class="one-half">
                 <h6 class="center-text uppercase bolder color-highlight">일주일 예산</h6>
-                <h1 class="center-text uppercase ultrabold fa-3x"><%= pigData.pig.budgetAmt %></h1>
+                <h1 class="center-text uppercase ultrabold fa-3x"><%= pigData.pig.budgetAmt %>원</h1>
                 <!--<p class="center-text">-->
                     <!--We have over 100 mobile<br> items in our portfolio.-->
                 <!--</p>-->
             </div>
             <div class="one-half last-column">
                 <h6 class="center-text uppercase bolder color-highlight">이번주 저축예상금액</h6>
-                <h1 class="center-text uppercase ultrabold fa-3x bottom-30"><%= pigData.today_save_money %></h1>
+                <h1 class="center-text uppercase ultrabold fa-3x bottom-30"><%= pigData.today_save_money %>원</h1>
                 <!--<p class="center-text">-->
                     <!--We have over 70 mobile<br> items in our portfolio.-->
                 <!--</p>-->
