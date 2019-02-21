@@ -60,7 +60,7 @@ router.get('/listPayment', (req,res) =>{
           'Authorization':`Bearer ${user.user_accessToken}`
         }
       };
-      console.log("dsafsdafsdajflhdskjalfhkjsdalfhlkjdsa");
+      
       apiService.accountTransactionList(reqConfig)
         .then((result)=>{
           console.log(result.data);
@@ -115,7 +115,7 @@ router.get('/newlist', isAuthenticated,  (req, res) =>{
           'Authorization':`Bearer ${user.user_accessToken}`
         }
       };
-      console.log("dsafsdafsdajflhdskjalfhkjsdalfhlkjdsa");
+      
       apiService.accountTransactionList(reqConfig)
       .then((result)=>{
         console.log(result.data);
