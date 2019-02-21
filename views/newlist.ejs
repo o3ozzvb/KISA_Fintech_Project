@@ -1,13 +1,13 @@
 <%- layout('layout/layout') %>
-<body class="theme-light" data-background="none" data-highlight="blue2">
     <!-- <div class="timeline-body"> -->
-        <!-- <div class="timeline-deco"></div> -->
+    <div style="margin-top: 80px">
+         <div class="timeline-deco"></div>
         <%
                     var amount = 0;
                     for(var i=0; i < tx_list.length ;i++)
                     {   
                         %>
-        <div class="timeline-item" style="margin-top: 80px">
+        <div class="timeline-item">
             <i class="fa fa-plus bg-pink2-dark shadow-large"></i>
             <div class="timeline-item-content round-medium">
                 <h5 class="">
@@ -23,5 +23,4 @@
                 amount = amount + Number(tx_list[i].tran_amt);
                 }
                  %>
-    <!-- </div> -->
-</body>
+    </div>

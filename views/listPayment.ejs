@@ -1,24 +1,10 @@
 <%- layout('layout/layout') %>
         <div class="page-content">
 
-            <div class="timeline-cover timeline-cover-center preload-image">
-                <div data-height="230" class="caption shadow-large">
-                    <div class="caption-center">
-                        <img src="images/pictures/0t.jpg" alt="img"
-                            class="preload-image horizontal-center round-image bottom-30 top-30" width="80">
-                        <h1 class="center-text color-white bolder">Karla Black</h1>
-                        <p class="boxed-text-huge under-heading color-white opacity-90">
-                            Professional Photographer, Europe
-                        </p>
-                    </div>
-                    <div class="caption-overlay bg-black opacity-80"></div>
-                    <div class="caption-bg bg-27"></div>
-                </div>
-            </div>
-            <div class="timeline-body">
+            <div style="margin-top: 80px">
                 <div class="timeline-deco"></div>
                 <% for(var i=0; i < tx_list.length ;i++){ %>
-                <div class="timeline-item top-10">
+                <div class="timeline-item">
                     <% if(tx_list[i].inout_type == '입금') {%>
                     <i class="fa fa-plus bg-blue2-dark shadow-large"></i>
                     <%}%>
