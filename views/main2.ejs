@@ -40,7 +40,7 @@
         <div class="content top-10 bottom-0">
 
             <h4 class="center-text uppercase bolder color-highlight">목표금액</h4>
-            <h5 class="center-text uppercase ultrabold fa-3x"><%= pigData.pig.goalAmt.toLocaleString() %>원</h5>
+            <h5 class="center-text uppercase ultrabold fa-3x" onclick="go('/main/newfinal')"><%= pigData.pig.goalAmt.toLocaleString() %>원</h5>
             <!--<p class="boxed-text-large">We've served over 30.000 Customers. We're delighted to see happy customers!-->
 
             </p><div class="divider"></div>
@@ -72,5 +72,8 @@
     window.location.href = "/main/newlist";
   }
 
+  function go(url) {
+    window.location.href = url;
+  }
 </script>
 
