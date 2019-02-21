@@ -9,9 +9,8 @@
                     <!-- <form class="caption-center" action="/login" method="post" id="loginForm" name="loginForm"> -->
                     <div class="content-boxed left-40 right-40">
                         <div class="content-boxed">
-                            <h2 class="horizontal-center center-text" onclick="showPayment()"
-                                style="padding-bottom: 20px; cursor: pointer">나의 <span style="text-decoration: underline" id="myPeriod"></span> 예산: <%= pigData.pig.budgetAmt%><span style="text-decoration: underline" id="budgetAmt"></span>원
-                                <br>돼지가 먹을 돈: <span style="text-decoration: underline" id="currAmt"></span> <%= pigData.today_save_money%> 원</h2>
+                            <h2 class="horizontal-center center-text" onclick="showPayment()">나의 <strong id="myPeriod"><%= pigData.pig.myPeriod%></strong> 예산: <strong id="budgetAmt"><%= pigData.pig.budgetAmt%></strong>원</h2>
+                                <h2 class="horizontal-center center-text" style="padding-bottom: 10px">돼지가 먹을 돈: <strong id="currAmt"><%= pigData.today_save_money%></strong> 원</h2>
                             <script>
                                 function showPayment() {
                                     window.location.href = "/main/listPayment";
@@ -19,7 +18,8 @@
                             </script>
                         </div>
                         <div class="content-boxed">
-                            <h2 class="horizontal-center center-text" style="padding-bottom: 20px">돼지가 먹은 돈 : <%= pigData.saved_money%><span style="text-decoration: underline" id="savingAmt"></span>원</h2>
+                            <h1 class="horizontal-center center-text" style="padding-bottom: 10px">모아야 할 돈 : <strong id="savingAmt"><%= pigData.pig.goalAmt%></strong> 원</h1>
+                            <h2 class="horizontal-center center-text" style="padding-bottom: 10px">돼지가 먹은 돈 : <strong id="savingAmt"><%= pigData.saved_money%></strong> 원</h2>
                         </div>
 
 
@@ -27,7 +27,7 @@
                             <button type='button' onclick="showlist()"
                                 class="horizontal-center round-image shadow-large bottom-30"
                                 style="cursor: pointer"><img src="/images/20.png" alt="img" width="150"></button>
-                            <h2 style="padding-top: 50px" class="center-text">무게 : <%= pigData.weight%><span style="text-decoration: underline" id="weight"></span>kg</h2>
+                            <h2 style="padding-top: 50px" class="center-text">무게 : <strong id="weight"><%= pigData.weight%></strong> kg</h2>
 
                             <script>
                                 function showlist() {
