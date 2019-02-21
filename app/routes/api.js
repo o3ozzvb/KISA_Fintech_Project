@@ -30,7 +30,7 @@ router.get('/home', (req,res) =>{
 router.post('/createTarget', insertPig);
 
 //돼지 화면에 정보 띄우기
-router.get('/pig_info', selectPig);
+// router.get('/pig_info', selectPig);
 
 //출금이체
 router.get('/transfer_withdraw', isAuthenticated, transfer_withdraw);

@@ -87,13 +87,13 @@ const account_balance = function (req, res, next) {
 const transfer_deposit2 = function (req, res, next) {
   const user_id = req.user.user_id;
   userService.getUserByUserId(user_id)
-  .then(user => {
+    .then(user => {
       const reqConfig = {
         params: {
           // wd_pass_phrase: "NONE",
           wd_pass_phrase: "NONE",
           wd_print_content: "환불해드림..",
-          name_check_option:"off",
+          name_check_option: "off",
           req_cnt: "1",
           req_list: [
             {
@@ -150,53 +150,97 @@ const transfer_withdraw = (req, res, next) => {
 };
 
 //거래내역조회
-const account_transaction_list=(req,res,next)=>{
-  const user_id=req.user.user_id;
+const account_transaction_list = (req, res, next) => {
+  const user_id = req.user.user_id;
 
   userService.getUserByUserId(user_id)
     .then(user => {
-      const reqConfig={
-        params:{
+      const reqConfig = {
+        params: {
           // fintech_use_num:"199003877057724702970497",
-          fintech_use_num:"199003877057724702985550",
-          inquiry_type:"A",
-          from_date:"20190218",
-          to_date:"20190219",
-          sort_order:"D",
-          page_index:"1",
-          tran_dtime:"20190219174500",
-          befor_inquiry_trace_info:"123",
-          list_tran_seqno:"0"
+          fintech_use_num: "199003877057724702985550",
+          inquiry_type: "A",
+          from_date: "20190218",
+          to_date: "20190219",
+          sort_order: "D",
+          page_index: "1",
+          tran_dtime: "20190219174500",
+          befor_inquiry_trace_info: "123",
+          list_tran_seqno: "0"
         },
-        headers:{
-          'Authorization':`Bearer ${user.user_accessToken}`
+        headers: {
+          'Authorization': `Bearer ${user.user_accessToken}`
         }
       };
       apiService.accountTransactionList(reqConfig)
-      .then((data)=>{
-        console.log(data.data);
-        return res.send(data.data)
-      })
-      .catch(error=> res.send(error))
+        .then((data) => {
+          console.log(data.data);
+          return res.send(data.data)
+        })
+        .catch(error => res.send(error))
     })
 };
 
 //돼지 보유 여부 확인
 const mainPage = function (req, res, next) {
   const user_id = req.user.user_id;
-  
-  pigService.getPigByUser(user_id)
-    .then(rows => {
-      if (rows.length == 0) {
-        console.log(rows);
-        return res.render("main");
-      }
-      else
-        return res.render("main2");
-    }).catch( error => res.send(error));
-}
 
-const insertPig = function(req,res,next){
+  let result = {
+    pig: {},
+    saved_money: 0,
+    today_save_money: 0,
+    pig_weight: 0
+  };
+
+  pigService.getPigByUser(user_id).then(rows => {
+    if (rows.length == 0) {
+      return res.render("main");
+    } else {
+      result.pig = rows[0];
+      return userService.getUserByUserId(user_id)
+    }
+  }).then(user => {
+      const reqConfig = {
+        params: {
+          fintech_use_num: "199003877057724702985550",
+          inquiry_type: "A",
+          from_date: "20190218",
+          to_date: "20190219",
+          sort_order: "D",
+          page_index: "1",
+          tran_dtime: "20190219174500",
+          befor_inquiry_trace_info: "123",
+          list_tran_seqno: "0"
+        },
+        headers: {
+          'Authorization': `Bearer ${user.user_accessToken}`
+        }
+      };
+      return apiService.accountTransactionList(reqConfig)
+
+    }).then((responseData) => {
+
+    let filteredData = responseData.data.res_list.filter(function (item) {
+      return item.print_content == '돼지적금'
+    });
+
+    let amount = 0;
+    for (let i = 0; i < filteredData.length; i++) {
+      amount = amount + Number(filteredData[i].tran_amt)
+    }
+
+    result.saved_money = amount;
+
+    userService.getUserByUserId(user_id);
+
+    console.log(result);
+    return res.render("main2", { pigData : result});
+  })
+};
+
+
+
+const insertPig = function (req, res, next) {
 
   const user_id = req.user.user_id;
 
@@ -210,28 +254,29 @@ const insertPig = function(req,res,next){
     goalAmt: req.body.goalAmt,
     //together_id:'null', //제승추가
     withdraw_acct: req.body.withdrawAcct, //'withdrawAcct',
-    fintech_use_num:'199003877057724702970497'
+    fintech_use_num: '199003877057724702970497'
   };
   console.log(data);
 
   pigService.insertPig(data)
-  .then(result => {
-    console.log(result);
-    res.render('main2')
-  })
-  .catch( error => console.log(error));
+    .then(result => {
+      console.log(result);
+      res.render('main2')
+    })
+    .catch(error => console.log(error));
 }
 
-//돼지 보유 여부 확인
 const selectPig = function (req, res, next) {
   const user_id = req.user.user_id;
 
   pigService.getPigByUser(user_id)
     .then((rows) => {
       console.log(rows);
-        return res.send(rows)
-    }).catch( error => res.send(error));
+      return res.send(rows)
+    }).catch(error => res.send(error));
 }
 
-module.exports = {realname, user_me, account_list, account_balance, transfer_deposit2, transfer_withdraw
-  ,account_transaction_list,mainPage,insertPig,selectPig};
+module.exports = {
+  realname, user_me, account_list, account_balance, transfer_deposit2, transfer_withdraw
+  , account_transaction_list, mainPage, insertPig, selectPig
+};
