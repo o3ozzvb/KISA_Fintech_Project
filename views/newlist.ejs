@@ -29,6 +29,7 @@
                           <%
                             amount = amount + Number(tx_list[i].tran_amt);
                         } %>
+                        
                         <!-- <tr>
                           <td>2019 - 02 - 19</td>
                           <td>12000원</td>
@@ -45,7 +46,24 @@
                         </tr>
                          -->
                 </table>
-                      <%= amount%>
+                <table>
+                      <%
+                        var last_day = tx_list.length;
+                        var amount = 0;
+                        for(var i=0; i < tx_list.length ;i++){
+                            amount = amount + Number(tx_list[i].tran_amt);
+                      }%>
+                      <tr>
+                          <th>최근 거래</th>
+                          <th>누적 금액</th>
+                        </tr> 
+                      <tr>
+                          <td><%= tx_list[last_day-1].tran_date %></td>
+                          <td><%= amount %></td>
+                      </tr>
+                      <!-- <%= amount%> -->
+                      
+                </table>
              </div>
         </div>
 </div>
