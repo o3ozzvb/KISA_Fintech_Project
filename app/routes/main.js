@@ -92,6 +92,10 @@ router.get('/testmain', (req, res) => {
   res.render('main');
 });
 
+router.get('/goalList',(req,res)=>{
+  res.render('check_solution');
+})
+
 router.get('/newlist', isAuthenticated, (req, res) => 
 {
   // res.render('newlist');
