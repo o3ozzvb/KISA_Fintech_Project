@@ -4,9 +4,9 @@
 
     <div data-height="220" class="caption caption-margins round-medium shadow-large" style="height: 220px;">
         <div class="caption-center">
-            <h1 class="center-text color-white bolder font-30">발리여행 가기</h1>
+            <h1 class="center-text color-white bolder font-30"><%=pigData.pig.goal%></h1>
             <h3 class="boxed-text-large color-white opacity-80" style="margin-top:20px">
-                올해는 꼭 부모님과 해외여행을!!
+                <%=pigData.pig.promise%>
             </h3>
             <div class="scale-box" style="margin-top:25px">
                 <a href="#" onclick="showPayment()" class="button button-round-huge button-center-large button-s"
@@ -17,7 +17,7 @@
         </div>
 
         <div class="caption-overlay bg-black opacity-40"></div>
-        <div class="caption-bg bg-17"></div>
+        <div class="caption-bg bg-18"></div>
     </div>
 
 
@@ -41,7 +41,7 @@
         <div class="content top-10 bottom-0">
 
             <h6 class="center-text uppercase bolder color-highlight">목표금액</h6>
-            <h1 class="center-text uppercase ultrabold fa-3x"><%= pigData.pig.goalAmt %></h1>
+            <h1 class="center-text uppercase ultrabold fa-3x" onclick="go('/main/newFinal')"><%= pigData.pig.goalAmt %></h1>
             <!--<p class="boxed-text-large">We've served over 30.000 Customers. We're delighted to see happy customers!-->
 
             </p><div class="divider"></div>
@@ -73,6 +73,10 @@
   }
   function showlist() {
     window.location.href = "/main/newlist";
+  }
+
+  function go(url) {
+    window.location.href = url;
   }
 
 </script>

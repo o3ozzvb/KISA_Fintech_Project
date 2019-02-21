@@ -22,34 +22,36 @@
     })
 </script>
 
-<body class="theme-light" data-background="none" data-highlight="blue2" >
-    <div class="page-content">
+
+
+    <div class="page-content header-clear-medium">
+
         <div data-height="cover-header" class="caption bottom-0">
-            <!-- <div id="page">
-        <div class="page-content header-clear-medium"> -->
+
             <form class="caption-center" action="/api/createTarget" method="post" id="createTarget" name="createTarget">
                 <div class="content-boxed">
                     <div class="content">
                         <div class="center-text font-30 bolder" style="padding-bottom: 30px; padding-top: 15px">나의 목표
                         </div>
 
-                        <div class="input-style input-style-2 input-required">
-                            <span>목표를 입력하세요.</span>
-                            <em>(required)</em>
-                            <input type="text" name="goal" placeholder="">
+                        <!--<div class="input-style-2 input-required">-->
+                            <!--<span>목표를 입력하세요.</span>-->
+                        <div class="form-field form-name">
+                            <label style="margin: 0 5px" for="goal">목표:<span>(required)</span></label>
+                            <input type="text" name="goal" class="round-small" placeholder="목표를 입력하세요." value="<%= result.title%>" text="result.title%>">
+                        </div>
+                        <!--</div>-->
+
+                        <div class="form-field form-name">
+                            <label style="margin: 0 5px" for="goal">목표금액:<span>(required)</span></label>
+                            <input type="text" name="goalAmt" class="round-small" placeholder="목표를 입력하세요." value="<%= result.goalAmt%>" text="result.title%>">
                         </div>
 
-                        <div class="input-style input-style-2 input-required">
-                            <span >목표금액을 입력하세요.</span>
-                            <em>(required)</em>
-                            <input type="text" name="goalAmt" placeholder="">
-                        </div>
-
-                        <div class="input-style input-style-2 input-required">
+                        <div class="input-style input-style-2 input-required" style="margin-top: 5px">
                             <span>출금 계좌를 선택하세요.</span>
                             <em><i class="fa fa-angle-down"></i></em>
                             <select id="list" name="withdrawAcct">
-                                <option value="text" disabled selected>Select a Value</option>
+                                <option value="text" disabled selected></option>
                             </select>
                         </div>
 
@@ -68,19 +70,19 @@
                         <div class="input-style input-style-2 input-required">
                             <span>예산을 입력하세요.</span>
                             <em>(required)</em>
-                            <input type="text" name="budgetAmt" placeholder="">
+                            <input type="text" name="budgetAmt" class="round-small" placeholder="">
                         </div>
 
-                        <div class="input-style input-style-2 input-required">
+                        <div class="input-style input-style-2 input-required" >
                                 <span>각오 한마디</span>
-                                <em>(required)</em>
-                                <input type="text" name="promise" placeholder="">
+                                <input type="text" name="promise" class="round-small" placeholder="">
                         </div>
 
-                        <div class="center-text content bottom-0">
-                            <a href="#" onclick="onSubmit()" class="button button-m shadow-small" style="background-color:#CC9999">돼지
-                                키우기!</a>
+                        <div class="center-text content bottom-0 top-20">
+                            <a href="#" id="submitBtn" onclick="onSubmit()" style="margin-top:10px;background: #CC9999"
+                               class="default-link button button-m shadow-huge button-round-large bottom-10 button-full">돼지키우기</a>
                         </div>
+
                         <script>
                             function onSubmit() {
                                 document.getElementById('createTarget').submit()
@@ -89,5 +91,3 @@
             </form>
         </div>
     </div>
-
-</body>
