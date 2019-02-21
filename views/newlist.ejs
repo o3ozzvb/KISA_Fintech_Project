@@ -1,52 +1,27 @@
 <%- layout('layout/layout') %>
-<div class="page-content header-clear-medium">	
-        <div class="search-trending content-boxed shadow-large">
-                <div class="content bottom-15"> 
-                  
-                <!-- <ul class="bottom-15">
-                    <li><a href="#">All Products<i class="fa fa-angle-right"></i></a></li>
-                    <li><a href="#">Eazy Mobile<i class="fa fa-angle-right"></i></a></li>
-                    <li><a href="#">Mega Mobile<i class="fa fa-angle-right"></i></a></li>
-                    <li><a href="#">Ultra Mobile<i class="fa fa-angle-right"></i></a></li>
-                    <li><a href="#">Kolor Mobile<i class="fa fa-angle-right"></i></a></li>
-                    <li class="no-border"><a href="#">Vinga Mobile<i class="fa fa-angle-right"></i></a></li>
-                </ul> -->
-                <table>
-                        <tr>
-                          <th>날짜</th>
-                          <th>저금 금액</th>
-                        </tr>
-                        <%
-
-                        var amount = 0;
-                        for(var i=0; i < tx_list.length ;i++){
-
+<body class="theme-light" data-background="none" data-highlight="blue2">
+    <!-- <div class="timeline-body"> -->
+        <!-- <div class="timeline-deco"></div> -->
+        <%
+                    var amount = 0;
+                    for(var i=0; i < tx_list.length ;i++)
+                    {   
                         %>
-                          <tr>
-                            <td><%= tx_list[i].tran_date %></td>
-                              <td><%= tx_list[i].tran_amt %></td>
-                          </tr>
-                          <%
-                            amount = amount + Number(tx_list[i].tran_amt);
-                        } %>
-                </table>
-                <table>
-                      <%
-                        var last_day = tx_list.length;
-                        var amount = 0;
-                        for(var i=0; i < tx_list.length ;i++){
-                            amount = amount + Number(tx_list[i].tran_amt);
-                      }%>
-                      <tr>
-                          <th>최근 거래</th>
-                          <th>누적 금액</th>
-                        </tr> 
-                      <tr>
-                          <td><%= tx_list[last_day-1].tran_date %></td>
-                          <td><%= amount %></td>
-                      </tr>
-                      <!-- <%= amount%> -->
-                </table>
-             </div>
+        <div class="timeline-item" style="margin-top: 80px">
+            <i class="fa fa-plus bg-pink2-dark shadow-large"></i>
+            <div class="timeline-item-content round-medium">
+                <h5 class="">
+                    <span class="left-15 text-left"><%= tx_list[i].tran_date %><br></span>
+                    <div class="left-15 text-left bolder" style="font-size:17px"><%= i+1%>회차</span>
+                    <div class="right-15 text-right bolder" style="font-size:15px" ><%= tx_list[i].tran_amt %>원</div>
+                    <!-- <%= amount%> -->
+                </h5>
+            </div>
         </div>
-</div>
+        <%
+
+                amount = amount + Number(tx_list[i].tran_amt);
+                }
+                 %>
+    <!-- </div> -->
+</body>
