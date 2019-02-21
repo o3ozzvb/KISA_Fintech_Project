@@ -93,6 +93,10 @@ router.get('/testmain', (req,res) =>{
   res.render('main');
 });
 
+router.get('/solution', (req,res) =>{
+  res.render('check_solution');
+})
+
 router.get('/newlist', isAuthenticated,  (req, res) =>{
   // res.render('newlist');
   const user_id=req.user.user_id;

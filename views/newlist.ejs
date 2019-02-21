@@ -53,15 +53,15 @@
                             amount = amount + Number(tx_list[i].tran_amt);
                       }%>
                       <tr>
-                          <th>마지막 저금 날짜</th>
-                          <th>현재까지 모은 금액</th>
+                          <th>최근 거래</th>
+                          <th>누적 금액</th>
                         </tr> 
                       <tr>
                           <td><%= tx_list[last_day-1].tran_date %></td>
                           <td><%= amount %></td>
                       </tr>
-                      <%= amount%>
-
+                      <!-- <%= amount%> -->
+                      
                 </table>
              </div>
         </div>
