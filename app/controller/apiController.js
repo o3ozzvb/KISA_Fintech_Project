@@ -222,7 +222,7 @@ const insertPig = function(req,res,next){
   .catch( error => console.log(error));
 }
 
-//돼지 보유 여부 확인
+//돼지 정보 가져오기
 const selectPig = function (req, res, next) {
   const user_id = req.user.user_id;
 
