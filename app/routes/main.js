@@ -92,7 +92,8 @@ router.get('/testmain', (req, res) => {
   res.render('main');
 });
 
-router.get('/newlist', isAuthenticated, (req, res) => {
+router.get('/newlist', isAuthenticated, (req, res) => 
+{
   // res.render('newlist');
   const user_id = req.user.user_id;
 
@@ -114,9 +115,23 @@ router.get('/newlist', isAuthenticated, (req, res) => {
           'Authorization': `Bearer ${user.user_accessToken}`
         }
       };
+      
+      apiService.accountTransactionList(reqConfig)
+      .then((result)=>{
+        console.log(result.data);
+        //return res.render(result.data)
+      
+        let filteredData = result.data.res_list.filter(function(item){
+          return item.print_content == '돼지적금'
+        });
+
+        return res.render('newlist',{ tx_list : filteredData});
+      })
+      .catch(error=> res.send(error))
+    })
       return apiService.accountTransactionList(reqConfig)
 
-    }).then((result) => {
+   .then((result) => {
 
     let filteredData = result.data.res_list.filter(function (item) {
       return item.print_content == '돼지적금'
