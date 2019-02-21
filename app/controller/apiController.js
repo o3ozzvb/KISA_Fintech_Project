@@ -238,12 +238,13 @@ const mainPage = function (req, res, next) {
 
     let restAmt = 0;
     for (let i = filteredData.length - 1; i >= 0; i--) {
+      console.log(filteredData[i].tran_amt);
       if (filteredData[i].inout_type == '입금') break;
       restAmt = amount + Number(filteredData[i].tran_amt)
     }
     result.today_save_money = result.pig.budgetAmt - restAmt;
 
-    //console.log(result);
+    console.log(result);
     return res.render("main2", { pigData: result });
   }).catch( error => {
     console.log(error)
