@@ -233,6 +233,7 @@ const mainPage = function (req, res, next) {
     }
     result.saved_money = amount;
     result.weight = amount / Number(result.pig.goalAmt) * 100;
+    
 
     let restAmt = 0;
     for (let i = filteredData.length - 1; i >= 0; i--) {
