@@ -9,7 +9,7 @@
                 올해는 꼭 부모님과 해외여행을!!
             </h3>
             <div class="scale-box" style="margin-top:25px">
-                <a href="#" onclick="showPayment()" class="button button-round-huge button-center-large button-s"
+                <a href="#" onclick="showlist()" class="button button-round-huge button-center-large button-s"
                     style="background: #CEC0AE"
                 >
                    <h3> <%= pigData.saved_money.toLocaleString() %>원 남았습니다. </h3></a>
@@ -26,8 +26,7 @@
             <button type='button' onclick="showlist()"
                     class="horizontal-center round-image bottom-10"
                     style="cursor: pointer"><img src="/images/20.png" alt="img" width="150"></button>
-            <h2 style="padding-top: 10px" class="center-text">무게 : <strong id="weight"><%= pigData.weight %></strong> kg
-            </h2>
+            <h1 class="center-text uppercase bolder">무게 : <%= pigData.weight.toFixed(1) %> kg</h1>
 
             <script>
 
@@ -40,24 +39,20 @@
 
         <div class="content top-10 bottom-0">
 
-            <h6 class="center-text uppercase bolder color-highlight">목표금액</h6>
-            <h1 class="center-text uppercase ultrabold fa-3x"><%= pigData.pig.goalAmt.toLocaleString() %>원</h1>
+            <h4 class="center-text uppercase bolder color-highlight">목표금액</h4>
+            <h3 class="center-text uppercase ultrabold fa-3x"><%= pigData.pig.goalAmt.toLocaleString() %>원</h3>
             <!--<p class="boxed-text-large">We've served over 30.000 Customers. We're delighted to see happy customers!-->
 
             </p><div class="divider"></div>
 
             <div class="one-half">
-                <h6 class="center-text uppercase bolder color-highlight">일주일 예산</h6>
-                <span class="center-text uppercase ultrabold fa-3x"><%= pigData.pig.budgetAmt.toLocaleString() %>원</span>
-                    <a href="/main/newlist" class="button button-m shadow-small button-circle" style="background-color:#CC9999 ">내역 보기</a>
-                
-                <!--<p class="center-text">-->
-                    <!--We have over 100 mobile<br> items in our portfolio.-->
-                <!--</p>-->
+                <h4 class="center-text uppercase bolder color-highlight"><%= pigData.pig.myPeriod%> 예산</h4>
+                <sph3an class="center-text uppercase ultrabold fa-3x"><%= pigData.pig.budgetAmt.toLocaleString() %>원</h3>
             </div>
             <div class="one-half last-column">
-                <h6 class="center-text uppercase bolder color-highlight">이번주 저축예상금액</h6>
-                <h1 class="center-text uppercase ultrabold fa-3x bottom-30"><%= pigData.today_save_money.toLocaleString() %>원</h1>
+                <h4 class="center-text uppercase bolder color-highlight">저축예상금액
+                <a href="/main/listPayment" class='fa fa-arrow-alt-circle-right shadow-large'></a></h4>
+                <h3 class="center-text uppercase ultrabold fa-3x bottom-30"><%= pigData.today_save_money.toLocaleString() %>원</h3>
                 <!--<p class="center-text">-->
                     <!--We have over 70 mobile<br> items in our portfolio.-->
                 <!--</p>-->
