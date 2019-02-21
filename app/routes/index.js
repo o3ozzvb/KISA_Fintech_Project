@@ -18,8 +18,15 @@ passport.deserializeUser(function (user, done) {
 
 // 첫페이지
 router.get('/', function (req, res, next) {
-  console.log(req.user);
-  res.render('login');
+  // console.log(req.user);
+  // res.render('newLogin');
+
+  if (req.user !== undefined) {
+    res.redirect('/api/main')
+  } else {
+    res.render('newLogin')
+  }
+
 });
 
 //로그인 페이지
@@ -27,9 +34,7 @@ router.get('/login', function (req, res) {
   if (req.user !== undefined) {
     res.redirect('/')
   } else {
-    res.render('login', {
-      title: 'login'
-    })
+    res.render('newLogin')
   }
 });
 
@@ -67,6 +72,11 @@ router.post("/signup",
     res.send('welcome')
   });
 
+
+router.get("/home", isAuthenticated, (req,res, next) => {
+  console.log("test");
+  res.render('home')
+})
 
 // 로그인 요청처리시 DB에서 사용자를 조회 패스워드 일치여부확인 후 인증 완료 처리
 passport.use(new LocalStrategy({

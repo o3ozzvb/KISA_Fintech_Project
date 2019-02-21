@@ -1,0 +1,32 @@
+<%- layout('layout/layout') %>
+<div class="page-content header-clear-medium">	
+        <link rel="stylesheet" type="text/css" href="styles/blog.css">
+        <div class="search-trending content-boxed shadow-large">
+                <div class="content bottom-15"> 
+                <!-- <ul class="bottom-15">
+                    <li><a href="#">All Products<i class="fa fa-angle-right"></i></a></li>
+                    <li><a href="#">Eazy Mobile<i class="fa fa-angle-right"></i></a></li>
+                    <li><a href="#">Mega Mobile<i class="fa fa-angle-right"></i></a></li>
+                    <li><a href="#">Ultra Mobile<i class="fa fa-angle-right"></i></a></li>
+                    <li><a href="#">Kolor Mobile<i class="fa fa-angle-right"></i></a></li>
+                    <li class="no-border"><a href="#">Vinga Mobile<i class="fa fa-angle-right"></i></a></li>
+                </ul> -->
+                <table>
+                        <tr>
+                          <th>거래 내역</th>
+                          <th>일시</th>
+                          <th>사용 금액</th>
+                        </tr>
+
+                    <% for(var i=0; i < tx_list.length ;i++){ %>
+                        <tr>
+                            <td><%= tx_list[i].print_content %></td>
+                            <td><%= tx_list[i].tran_date %></td>
+                            <td><%= tx_list[i].tran_amt %></td>
+                        </tr>
+                    <% } %>
+                </table>
+                      
+             </div>
+        </div>
+</div>

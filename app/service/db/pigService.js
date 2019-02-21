@@ -13,7 +13,6 @@ const getPigByUser = (user_id) => {
 }
 
 const insertPig = (data) => {
-
     return Promise.using(getSqlConnection(),
     (connection) => {
         var sql = "INSERT INTO pig SET ?";
@@ -23,4 +22,5 @@ const insertPig = (data) => {
         });
     });
 }
+
 module.exports = {getPigByUser, insertPig};

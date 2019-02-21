@@ -35,19 +35,19 @@
                         <input type="password" name="password2" placeholder="Confirm your Password">
                     </div>
                     <div class="top-20 bottom-20">
-                        <a href="/login" data-menu="menu-signin" class="center-text font-11 color-gray2-dark">Already Registered? Sign In Here.</a>
+                        <a href="/login" data-menu="menu-signin" class="center-text font-11 color-gray2-dark">Already Registered? LogIn Here.</a>
                     </div>
                     <div class="clear"></div>
-                    <a href="#" onclick="signup()" class="button button-full button-m shadow-large button-round-small bg-green1-dark top-10 bottom-0">LOGIN</a>
+                    <a href="#" onclick="main()" class="button button-full button-m shadow-large button-round-small bg-green1-dark top-10 bottom-0">확인</a>
                 </div>
             </div>
         </div>
     </div>
     </form>
     <script>
-        function signup() {
-          document.getElementById('signupForm').submit();
+        function main(){
+            window.location.href="/login";
         }
-    </script>
+      </script>
 </div>
 <!-- Page Content Class Ends Here-->
