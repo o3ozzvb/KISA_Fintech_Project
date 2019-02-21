@@ -72,7 +72,11 @@ router.get('/listPayment', isAuthenticated, (req, res) => {
 });
 
 router.get('/setTarget', (req, res) => {
-  res.render('set_target_page2');
+  const reqData = {
+    title : req.query.title,
+    goalAmt : req.query.goalAmt
+  }
+  res.render('set_target_page2', {result : reqData});
 });
 
 // router.get('/newcheckbox', (req, res) => {
