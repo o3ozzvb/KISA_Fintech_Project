@@ -1,18 +1,18 @@
 <%- layout('layout/layout') %>
+<body class="theme-light" data-background="none" data-highlight="blue2">
     <!-- <div class="timeline-body"> -->
-    <div style="margin-top: 80px">
-         <div class="timeline-deco"></div>
+        <!-- <div class="timeline-deco"></div> -->
         <%
                     var amount = 0;
                     for(var i=0; i < tx_list.length ;i++)
                     {   
                         %>
-        <div class="timeline-item">
+        <div class="timeline-item" style="margin-top: 80px">
             <i class="fa fa-plus bg-pink2-dark shadow-large"></i>
             <div class="timeline-item-content round-medium">
                 <h5 class="">
                     <span class="left-15 text-left"><%= tx_list[i].tran_date %><br></span>
-                    <div class="left-15 text-left bolder" style="font-size:17px"><%= i+1%>회차</div>
+                    <div class="left-15 text-left bolder" style="font-size:17px"><%= i+1%>회차</span>
                     <div class="right-15 text-right bolder" style="font-size:15px" ><%= tx_list[i].tran_amt %>원</div>
                     <!-- <%= amount%> -->
                 </h5>
@@ -23,4 +23,5 @@
                 amount = amount + Number(tx_list[i].tran_amt);
                 }
                  %>
-    </div>
+    <!-- </div> -->
+</body>

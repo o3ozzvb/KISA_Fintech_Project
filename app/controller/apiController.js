@@ -162,7 +162,7 @@ const account_transaction_list = (req, res, next) => {
           inquiry_type: "A",
           from_date: "20190218",
           to_date: "20190219",
-          sort_order: "D",
+          sort_order: "A",
           page_index: "1",
           tran_dtime: "20190219174500",
           befor_inquiry_trace_info: "123",
@@ -218,6 +218,7 @@ const mainPage = function (req, res, next) {
         'Authorization': `Bearer ${user.user_accessToken}`
       }
     };
+
     return apiService.accountTransactionList(reqConfig)
 
   }).then((responseData) => {
@@ -231,13 +232,13 @@ const mainPage = function (req, res, next) {
     for (let i = 0; i < filteredData.length; i++) {
       amount = amount + Number(filteredData[i].tran_amt)
     }
-    result.saved_money = amount;
-    result.weight = amount / Number(result.pig.goalAmt) * 100;
+    result.saved_money = Number(result.pig.goalAmt) - amount;
+    result.weight = result.saved_money / Number(result.pig.goalAmt) * 100;
     
 
     let restAmt = 0;
     for (let i = filteredData.length - 1; i >= 0; i--) {
-      if (filteredData[i].inout_type == 'in') break;
+      if (filteredData[i].inout_type == '입금') break;
       restAmt = amount + Number(filteredData[i].tran_amt)
     }
     result.today_save_money = result.pig.budgetAmt - restAmt;
@@ -299,7 +300,7 @@ const demoPage = function (req, res, next) {
     for (let i = 0; i < filteredData.length; i++) {
       amount = amount + Number(filteredData[i].tran_amt)
     }
-    result.saved_money = amount;
+    result.saved_money = Number(result.pig.goalAmt) - amount;
     result.weight = amount / Number(result.pig.goalAmt) * 100;
     
 

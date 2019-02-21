@@ -23,7 +23,7 @@
 
     <div class="content-boxed left-20 right-20">
         <div class="content bottom-10">
-            <button type='button' onclick="showlist()"
+            <button type='button' onclick="showmain()"
                     class="horizontal-center round-image bottom-10"
                     style="cursor: pointer"><img src="/images/20.png" alt="img" width="150"></button>
             <h1 class="center-text uppercase bolder">무게 : 0.0 kg</h1>
@@ -71,6 +71,8 @@
   function showlist() {
     window.location.href = "/main/newlist";
   }
-
+  function showmain() {
+    window.location.href = "/api/main";
+  }
 </script>
 
