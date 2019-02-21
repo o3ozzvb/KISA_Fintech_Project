@@ -1,0 +1,76 @@
+<%- layout('layout/layout') %>
+
+<div class="page-content header-clear-medium">
+
+    <div data-height="220" class="caption caption-margins round-medium shadow-large" style="height: 220px;">
+        <div class="caption-center">
+            <h1 class="center-text color-white bolder font-30"><%=pigData.pig.goal%></h1>
+            <h3 class="boxed-text-large color-white opacity-80" style="margin-top:20px">
+                <%=pigData.pig.promise%>
+            </h3>
+            <div class="scale-box" style="margin-top:25px">
+                <a href="#" onclick="showlist()" class="button button-round-huge button-center-large button-s"
+                    style="background: #CEC0AE"
+                >
+                   <h3> <%= pigData.pig.goalAmt.toLocaleString() %>원 남았습니다. </h3></a>
+            </div>
+        </div>
+
+        <div class="caption-overlay bg-black opacity-40"></div>
+        <div class="caption-bg bg-18"></div>
+    </div>
+
+
+    <div class="content-boxed left-20 right-20">
+        <div class="content bottom-10">
+            <button type='button' onclick="showlist()"
+                    class="horizontal-center round-image bottom-10"
+                    style="cursor: pointer"><img src="/images/20.png" alt="img" width="150"></button>
+            <h1 class="center-text uppercase bolder">무게 : 0.0 kg</h1>
+
+            <script>
+
+            </script>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <div class="content-boxed">
+
+        <div class="content top-10 bottom-0">
+
+            <h4 class="center-text uppercase bolder color-highlight">목표금액</h4>
+            <h5 class="center-text uppercase ultrabold fa-3x"><%= pigData.pig.goalAmt.toLocaleString() %>원</h5>
+            <!--<p class="boxed-text-large">We've served over 30.000 Customers. We're delighted to see happy customers!-->
+
+            </p><div class="divider"></div>
+
+            <div class="one-half">
+                <h4 class="center-text uppercase bolder color-highlight"><%= pigData.pig.myPeriod%> 예산</h4>
+                <h5 class="center-text uppercase ultrabold fa-2x"><%= pigData.pig.budgetAmt.toLocaleString() %>원</h5>
+            </div>
+            <div class="one-half last-column">
+                <h4 class="center-text uppercase bolder color-highlight">저축예상금액
+                <a href="/main/listPayment" class='fa fa-arrow-alt-circle-right shadow-large'></a></h4>
+                <h5 class="center-text uppercase ultrabold fa-2x bottom-30"><%= pigData.pig.budgetAmt.toLocaleString() %>원</h5>
+                <!--<p class="center-text">-->
+                    <!--We have over 70 mobile<br> items in our portfolio.-->
+                <!--</p>-->
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+
+
+</div>
+
+<script>
+  function showPayment() {
+    window.location.href = "/main/listPayment";
+  }
+  function showlist() {
+    window.location.href = "/main/newlist";
+  }
+
+</script>
+

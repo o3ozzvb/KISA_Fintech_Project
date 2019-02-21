@@ -249,6 +249,74 @@ const mainPage = function (req, res, next) {
   })
 };
 
+//돼지 보유 여부 확인 & 돼지 정보
+const demoPage = function (req, res, next) {
+  const user_id = req.user.user_id;
+
+  let result = {
+    pig: {},
+    saved_money: 0,
+    today_save_money: 0,
+    pig_weight: 0,
+    // my_period: 0,
+    // my_period_str : ''
+  };
+
+  pigService.getPigByUser(user_id).then(rows => {
+    if (rows.length == 0) {
+      return res.render("main");
+    } else {
+      result.pig = rows[0];
+      return userService.getUserByUserId(user_id)
+    }
+  }).then(user => {
+    const reqConfig = {
+      params: {
+        fintech_use_num: "199003877057724702985550",
+        inquiry_type: "A",
+        from_date: "20190218",
+        to_date: "20190219",
+        sort_order: "D",
+        page_index: "1",
+        tran_dtime: "20190219174500",
+        befor_inquiry_trace_info: "123",
+        list_tran_seqno: "0"
+      },
+      headers: {
+        'Authorization': `Bearer ${user.user_accessToken}`
+      }
+    };
+    return apiService.accountTransactionList(reqConfig)
+
+  }).then((responseData) => {
+
+    //적금 총액 계산
+    let filteredData = responseData.data.res_list.filter(function (item) {
+      return item.print_content == '돼지적금'
+    });
+
+    let amount = 0;
+    for (let i = 0; i < filteredData.length; i++) {
+      amount = amount + Number(filteredData[i].tran_amt)
+    }
+    result.saved_money = amount;
+    result.weight = amount / Number(result.pig.goalAmt) * 100;
+    
+
+    let restAmt = 0;
+    for (let i = filteredData.length - 1; i >= 0; i--) {
+      if (filteredData[i].inout_type == 'in') break;
+      restAmt = amount + Number(filteredData[i].tran_amt)
+    }
+    result.today_save_money = result.pig.budgetAmt - restAmt;
+
+    //console.log(result);
+    return res.render("main2_demo", { pigData: result });
+  }).catch( error => {
+    console.log(error)
+  })
+};
+
 const insertPig = function (req, res, next) {
 
   const user_id = req.user.user_id;
@@ -272,7 +340,7 @@ const insertPig = function (req, res, next) {
   pigService.insertPig(data)
     .then(result => {
       console.log(result);
-      res.redirect('/api/main')
+      res.redirect('/api/demo_main')
     })
     .catch(error => console.log(error));
 }
@@ -289,5 +357,5 @@ const selectPig = function (req, res, next) {
 
 module.exports = {
   realname, user_me, account_list, account_balance, transfer_deposit2, transfer_withdraw
-  , account_transaction_list, mainPage, insertPig, selectPig
+  , account_transaction_list, mainPage, insertPig, selectPig,demoPage
 };
