@@ -233,13 +233,14 @@ const mainPage = function (req, res, next) {
     }
     result.saved_money = amount;
     result.weight = amount / Number(result.pig.goalAmt) * 100;
+    
 
     let restAmt = 0;
     for (let i = filteredData.length - 1; i >= 0; i--) {
       if (filteredData[i].inout_type == 'in') break;
       restAmt = amount + Number(filteredData[i].tran_amt)
     }
-    result.today_save_money = restAmt;
+    result.today_save_money = result.pig.budgetAmt - restAmt;
 
     //console.log(result);
     return res.render("main2", { pigData: result });
