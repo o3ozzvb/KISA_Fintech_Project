@@ -22,4 +22,5 @@ const insertPig = (data) => {
         });
     });
 }
+
 module.exports = {getPigByUser, insertPig};

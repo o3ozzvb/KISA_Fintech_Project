@@ -52,7 +52,6 @@ const account_list = function (req, res, next) {
           'Authorization': `Bearer ${user.user_accessToken}`
         }
       }
-
       apiService.accountList(reqConfig)
         .then((data) => {
           console.log(data.data);
@@ -202,15 +201,16 @@ const insertPig = function(req,res,next){
   const user_id = req.user.user_id;
 
   const data = {
-    goal: req.user.goal,
-    isTogether:'0', //제승추가
+    goal: req.body.goal,
+    //isTogether:'0', //제승추가
     minPeriod: '0',
-    myPeriod: '1',
+    myPeriod: req.body.myPeriod,
     budgetAmt: req.body.budgetAmt,
     user_id: user_id,
-    //goalAmt: 'goalAmt',
-    together_id:'null', //제승추가
-    withdraw_acct: '12345' //'withdrawAcct',
+    goalAmt: req.body.goalAmt,
+    //together_id:'null', //제승추가
+    withdraw_acct: req.body.withdrawAcct, //'withdrawAcct',
+    fintech_use_num:'199003877057724702970497'
   };
   console.log(data);
 
@@ -220,14 +220,18 @@ const insertPig = function(req,res,next){
     res.render('main2')
   })
   .catch( error => console.log(error));
+}
 
-  // console.log("insertPig")
-  // console.log(req.body.goal);
-  // res.send("success");
+//돼지 보유 여부 확인
+const selectPig = function (req, res, next) {
+  const user_id = req.user.user_id;
 
-  console.log("insertPig")
-
+  pigService.getPigByUser(user_id)
+    .then((rows) => {
+      console.log(rows);
+        return res.send(rows)
+    }).catch( error => res.send(error));
 }
 
 module.exports = {realname, user_me, account_list, account_balance, transfer_deposit2, transfer_withdraw
-  ,account_transaction_list,mainPage,insertPig};
+  ,account_transaction_list,mainPage,insertPig,selectPig};
