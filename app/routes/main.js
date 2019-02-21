@@ -92,7 +92,7 @@ router.get('/testmain', (req, res) => {
   res.render('main');
 });
 
-router.get('/goalList',(req,res)=>{
+router.get('/goalList', (req, res) => {
   res.render('check_solution');
 })
 
