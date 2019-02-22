@@ -239,11 +239,13 @@ const mainPage = function (req, res, next) {
     let restAmt = 0;
 
     for (let i = responseData.data.res_list.length - 1; i >= 0; i--) {
-      console.log(responseData.data.res_list[i].tran_amt);
+      //console.log(responseData.data.res_list[i].tran_amt);
       if (responseData.data.res_list[i].inout_type == '입금') break;
       restAmt = amount + Number(responseData.data.res_list[i].tran_amt)
     }
-    result.today_save_money = result.pig.budgetAmt - restAmt;
+    // result.today_save_money = result.pig.budgetAmt - restAmt;
+    const tx_list = responseData.data.res_list;
+    result.today_save_money = tx_list[tx_list.length - 1].after_balance_amt;
 
     //console.log(result);
     return res.render("main2", { pigData: result });
@@ -308,7 +310,7 @@ const demoPage = function (req, res, next) {
 
     let restAmt = 0;
     for (let i = filteredData.length - 1; i >= 0; i--) {
-      if (filteredData[i].inout_type == 'in') break;
+      if (filteredData[i].inout_type == '입금') break;
       restAmt = amount + Number(filteredData[i].tran_amt)
     }
     result.today_save_money = result.pig.budgetAmt - restAmt;
